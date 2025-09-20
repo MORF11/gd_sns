@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://qlae56em0ia6"]
+
+[ext_resource type="Texture2D" uid="uid://b08mv82n1aiaj" path="res://icon.svg" id="1_3ed3y"]
+[ext_resource type="Script" uid="uid://di7rvfoiu7b2f" path="res://apple.gd" id="1_n78qv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n78qv"]
+radius = 15.0333
+
+[node name="Node2D" type="CharacterBody2D"]
+script = ExtResource("1_n78qv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_n78qv")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_3ed3y")

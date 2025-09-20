@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://gasm3b8s7ihn"]
+
+[ext_resource type="Script" uid="uid://dxqjkmws4pmd3" path="res://plr_swr.gd" id="2_dwvek"]
+[ext_resource type="Texture2D" uid="uid://b08mv82n1aiaj" path="res://icon.svg" id="3_rx5id"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v4ynp"]
+radius = 68.0294
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_83fnj"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="score" type="Label" parent="."]
+offset_left = 528.0
+offset_top = 14.0
+offset_right = 629.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 50
+text = "qwe"
+
+[node name="plr" type="Area2D" parent="."]
+position = Vector2(576, 580)
+script = ExtResource("2_dwvek")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plr"]
+shape = SubResource("CircleShape2D_v4ynp")
+
+[node name="Icon" type="Sprite2D" parent="plr"]
+texture = ExtResource("3_rx5id")
+
+[node name="Area2D" type="Area2D" parent="plr"]
+position = Vector2(142, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plr/Area2D"]
+scale = Vector2(7, 2)
+shape = SubResource("RectangleShape2D_83fnj")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="plr/Area2D"]
+position = Vector2(-5.48363e-06, 0.500002)
+scale = Vector2(1.09375, 0.320313)
+texture = ExtResource("3_rx5id")
+
+[connection signal="body_entered" from="plr" to="plr" method="_on_body_entered"]

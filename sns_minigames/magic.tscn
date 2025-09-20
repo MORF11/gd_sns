@@ -1,0 +1,112 @@
+[gd_scene load_steps=15 format=3 uid="uid://d2pb6rwew1d77"]
+
+[ext_resource type="Texture2D" uid="uid://b08mv82n1aiaj" path="res://icon.svg" id="1_hmia2"]
+[ext_resource type="Script" uid="uid://doqrsysx1f1cu" path="res://plr_mg.gd" id="2_b36ka"]
+[ext_resource type="Script" uid="uid://qclm27ov21l7" path="res://staff.gd" id="2_yagwd"]
+[ext_resource type="Texture2D" uid="uid://bf58feyuusp70" path="res://bubble.png" id="3_b36ka"]
+[ext_resource type="Script" uid="uid://000yplknl2dm" path="res://score_mg.gd" id="5_sxt0a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yagwd"]
+radius = 37.2156
+
+[sub_resource type="Curve" id="Curve_hmia2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.516854), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_b36ka"]
+width = 100
+curve = SubResource("Curve_hmia2")
+
+[sub_resource type="Gradient" id="Gradient_yagwd"]
+colors = PackedColorArray(0, 0.827451, 0.784314, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sxt0a"]
+gradient = SubResource("Gradient_yagwd")
+
+[sub_resource type="Curve" id="Curve_b36ka"]
+_data = [Vector2(0, 0.269663), 0.0, 0.0, 0, 0, Vector2(0.985, 0.741573), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_yagwd"]
+width = 100
+curve = SubResource("Curve_b36ka")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hmia2"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 8.7
+scale_max = 11.6
+color_ramp = SubResource("GradientTexture1D_sxt0a")
+alpha_curve = SubResource("CurveTexture_b36ka")
+emission_curve = SubResource("CurveTexture_yagwd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b36ka"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 75.63
+initial_velocity_max = 222.69
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -100.0
+linear_accel_max = -63.03
+scale_min = 3.0
+scale_max = 3.0
+color = Color(0.301961, 1, 0.933333, 1)
+alpha_curve = SubResource("CurveTexture_b36ka")
+emission_curve = SubResource("CurveTexture_b36ka")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="targets" type="Node2D" parent="."]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(88, 536)
+texture = ExtResource("1_hmia2")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(89, 540)
+scale = Vector2(0.359375, 1)
+script = ExtResource("2_yagwd")
+
+[node name="staff" type="Sprite2D" parent="Node2D"]
+position = Vector2(314.435, -59)
+rotation = -0.0925025
+scale = Vector2(1, 1.44608)
+skew = -0.0925025
+texture = ExtResource("1_hmia2")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(606, 303)
+script = ExtResource("2_b36ka")
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+shape = SubResource("CircleShape2D_yagwd")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="CharacterBody2D"]
+texture_filter = 1
+amount = 10
+texture = ExtResource("3_b36ka")
+lifetime = 0.38
+interp_to_end = 0.02
+process_material = SubResource("ParticleProcessMaterial_hmia2")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="CharacterBody2D"]
+texture_filter = 1
+amount = 10
+texture = ExtResource("3_b36ka")
+process_material = SubResource("ParticleProcessMaterial_b36ka")
+
+[node name="trgts" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="score" type="Label" parent="."]
+offset_left = 552.0
+offset_top = 20.0
+offset_right = 653.0
+offset_bottom = 89.0
+theme_override_font_sizes/font_size = 50
+text = "qwe"
+script = ExtResource("5_sxt0a")
+
+[connection signal="body_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
