@@ -15,8 +15,10 @@ func inv():
 		for c in q:
 			c.visible = true
 	$quit.visible = false
+	$lvl.visible = true
 	if not is_inv:
 		$quit.visible = true
+		$lvl.visible = false
 	
 	is_inv = not is_inv
 

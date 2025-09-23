@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://kt1te4rsdjmk"]
+[gd_scene load_steps=3 format=3 uid="uid://kt1te4rsdjmk"]
 
 [ext_resource type="Script" uid="uid://bf7i68fykns4x" path="res://ui.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://c78pykn3mt8jq" path="res://lvl.gd" id="2_0xm2m"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -29,14 +30,6 @@ offset_right = 824.0
 offset_bottom = 241.0
 text = "sword"
 
-[node name="pary" type="Button" parent="."]
-layout_mode = 0
-offset_left = 277.0
-offset_top = 427.0
-offset_right = 320.0
-offset_bottom = 458.0
-text = "pary"
-
 [node name="magic" type="Button" parent="."]
 layout_mode = 0
 offset_left = 780.0
@@ -47,10 +40,10 @@ text = "magic"
 
 [node name="bow" type="Button" parent="."]
 layout_mode = 0
-offset_left = 528.0
-offset_top = 316.0
-offset_right = 582.0
-offset_bottom = 347.0
+offset_left = 281.0
+offset_top = 411.0
+offset_right = 335.0
+offset_bottom = 442.0
 text = "bow"
 
 [node name="quit" type="Button" parent="."]
@@ -61,6 +54,16 @@ offset_top = 22.0
 offset_right = 1120.0
 offset_bottom = 53.0
 text = "quit"
+
+[node name="lvl" type="Label" parent="."]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 14.0
+offset_right = 629.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 50
+text = "qwe"
+script = ExtResource("2_0xm2m")
 
 [connection signal="button_down" from="shield" to="." method="_on_shield_button_down"]
 [connection signal="button_down" from="sword" to="." method="_on_sword_button_down"]
