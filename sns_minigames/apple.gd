@@ -8,10 +8,11 @@ extends CharacterBody2D
 	#move_and_slide()
 
 @export var is_spawned = false
+@export var sp = 25000
 
 func _process(delta: float) -> void:
 	if is_spawned:
 		velocity = Vector2.ZERO
-		velocity = $".".position.direction_to(Vector2.ZERO) * 25000 * delta
+		velocity = $".".position.direction_to(Vector2.ZERO) * sp * delta
 		move_and_slide()
 	

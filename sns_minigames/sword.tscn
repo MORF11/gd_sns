@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://gasm3b8s7ihn"]
+[gd_scene load_steps=6 format=3 uid="uid://gasm3b8s7ihn"]
 
+[ext_resource type="Script" uid="uid://6dkii5enkssx" path="res://score_sw.gd" id="1_r76a6"]
 [ext_resource type="Script" uid="uid://dxqjkmws4pmd3" path="res://plr_swr.gd" id="2_dwvek"]
 [ext_resource type="Texture2D" uid="uid://b08mv82n1aiaj" path="res://icon.svg" id="3_rx5id"]
 
@@ -17,6 +18,7 @@ offset_right = 629.0
 offset_bottom = 83.0
 theme_override_font_sizes/font_size = 50
 text = "qwe"
+script = ExtResource("1_r76a6")
 
 [node name="plr" type="Area2D" parent="."]
 position = Vector2(576, 580)
@@ -29,12 +31,12 @@ shape = SubResource("CircleShape2D_v4ynp")
 texture = ExtResource("3_rx5id")
 
 [node name="Area2D" type="Area2D" parent="plr"]
+visible = false
 position = Vector2(142, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="plr/Area2D"]
 scale = Vector2(7, 2)
 shape = SubResource("RectangleShape2D_83fnj")
-disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="plr/Area2D"]
 position = Vector2(-5.48363e-06, 0.500002)
@@ -42,3 +44,4 @@ scale = Vector2(1.09375, 0.320313)
 texture = ExtResource("3_rx5id")
 
 [connection signal="body_entered" from="plr" to="plr" method="_on_body_entered"]
+[connection signal="body_entered" from="plr/Area2D" to="plr" method="_on_area_2d_body_entered"]

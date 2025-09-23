@@ -8,7 +8,8 @@ var ins
 var points = []
 var spray
 var turn
-var len
+var leng
+var q
 
 func spawn(pos):
 	ins = ap.instantiate()
@@ -19,7 +20,7 @@ func spawn(pos):
 
 
 func _ready() -> void:
-	var q = 3.1415/180
+	q = 3.1415/180
 	for i in range(88):
 		$"../rot".rotate(0.5)
 		points.append($"../rot/Icon".global_position)
@@ -33,15 +34,15 @@ func _process(_delta: float) -> void:
 		spawn(randi()%88)
 	else:
 		spray = randi()%88
-		len = randi()%30+1
-		turn = randi()%len
+		leng = randi()%30+1
+		turn = randi()%leng
 		for i in range(turn):
 			spawn(spray)
 			spray += 1
 			if spray > 87:
 				spray = 0
 			await get_tree().create_timer(0.15).timeout
-		for i in range(len-turn):
+		for i in range(leng-turn):
 			spawn(spray)
 			spray -= 1
 			if spray > 87:
