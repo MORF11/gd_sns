@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://d2pb6rwew1d77"]
+[gd_scene load_steps=18 format=3 uid="uid://d2pb6rwew1d77"]
 
 [ext_resource type="Texture2D" uid="uid://b08mv82n1aiaj" path="res://icon.svg" id="1_hmia2"]
 [ext_resource type="Script" uid="uid://doqrsysx1f1cu" path="res://plr_mg.gd" id="2_b36ka"]
 [ext_resource type="Script" uid="uid://qclm27ov21l7" path="res://staff.gd" id="2_yagwd"]
 [ext_resource type="Texture2D" uid="uid://bf58feyuusp70" path="res://bubble.png" id="3_b36ka"]
 [ext_resource type="Script" uid="uid://000yplknl2dm" path="res://score_mg.gd" id="5_sxt0a"]
+[ext_resource type="Script" uid="uid://bi1f210344upa" path="res://prgrs_bar.gd" id="6_t6nvo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yagwd"]
 radius = 37.2156
@@ -54,16 +55,22 @@ color = Color(0.301961, 1, 0.933333, 1)
 alpha_curve = SubResource("CurveTexture_b36ka")
 emission_curve = SubResource("CurveTexture_b36ka")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_grpal"]
+bg_color = Color(0.32578987, 0.32578987, 0.32578987, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qw813"]
+bg_color = Color(11.708403, 11.708403, 11.708403, 1)
+
 [node name="Node2D" type="Node2D"]
 
 [node name="targets" type="Node2D" parent="."]
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(88, 536)
+position = Vector2(106, 537)
 texture = ExtResource("1_hmia2")
 
 [node name="Node2D" type="Node2D" parent="."]
-position = Vector2(89, 540)
+position = Vector2(107, 541)
 scale = Vector2(0.359375, 1)
 script = ExtResource("2_yagwd")
 
@@ -108,5 +115,18 @@ offset_bottom = 89.0
 theme_override_font_sizes/font_size = 50
 text = "qwe"
 script = ExtResource("5_sxt0a")
+
+[node name="lvl" type="ProgressBar" parent="."]
+offset_left = 7.0
+offset_top = 16.0
+offset_right = 30.0
+offset_bottom = 639.0
+theme_override_styles/background = SubResource("StyleBoxFlat_grpal")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qw813")
+rounded = true
+allow_greater = true
+fill_mode = 3
+show_percentage = false
+script = ExtResource("6_t6nvo")
 
 [connection signal="body_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
