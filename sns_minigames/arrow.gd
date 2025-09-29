@@ -13,3 +13,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		body.del(0.1)
 		$"..".score += 1
 		velocity *= 0.7
+		$"..".get_child(4).add()

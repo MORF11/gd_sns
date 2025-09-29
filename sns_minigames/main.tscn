@@ -62,7 +62,8 @@ offset_top = 14.0
 offset_right = 629.0
 offset_bottom = 83.0
 theme_override_font_sizes/font_size = 50
-text = "qwe"
+text = "0"
+horizontal_alignment = 1
 script = ExtResource("2_0xm2m")
 
 [connection signal="button_down" from="shield" to="." method="_on_shield_button_down"]

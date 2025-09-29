@@ -39,4 +39,5 @@ func _process(delta: float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is StaticBody2D:
 		body.del(0.05)
+		$"../lvl".add()
 		score += 1
