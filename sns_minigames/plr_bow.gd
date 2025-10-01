@@ -48,5 +48,5 @@ func _process(_delta: float) -> void:
 			tr.time = 1.8
 		elif score > 300:
 			tr.time = 1.5
-		tr.get_child(2).connect('timeout',loose)
+		tr.get_child(1).connect('timeout',loose)
 		$"targets".add_child(tr)

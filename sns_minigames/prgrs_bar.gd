@@ -1,6 +1,6 @@
 extends ProgressBar
 
-@onready var lvl = $"..".get_parent().get_child(5)
+@onready var lvl = $"..".get_parent().get_child(6)
 
 func add():
 	value += 10

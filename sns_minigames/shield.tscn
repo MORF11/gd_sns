@@ -1,16 +1,20 @@
-[gd_scene load_steps=10 format=3 uid="uid://csd5tt78obhcx"]
+[gd_scene load_steps=14 format=3 uid="uid://csd5tt78obhcx"]
 
 [ext_resource type="Script" uid="uid://dcir7nxvx1o6h" path="res://plr_sh.gd" id="1_0vxx4"]
-[ext_resource type="Texture2D" uid="uid://b08mv82n1aiaj" path="res://icon.svg" id="2_4re53"]
+[ext_resource type="Texture2D" uid="uid://d3vkk8ca7140p" path="res://assets/head.png" id="2_gdxae"]
+[ext_resource type="Texture2D" uid="uid://b7fhjxu4o7ixa" path="res://assets/body.png" id="3_275sl"]
 [ext_resource type="Script" uid="uid://c33ij17l3illa" path="res://score_sh.gd" id="3_tgr6k"]
+[ext_resource type="Texture2D" uid="uid://c0n8tfyb5rt70" path="res://assets/foot.png" id="4_kjr8o"]
 [ext_resource type="Script" uid="uid://rc5p85vqxvp6" path="res://shield.gd" id="4_xc41h"]
 [ext_resource type="Script" uid="uid://bi1f210344upa" path="res://prgrs_bar.gd" id="5_4re53"]
+[ext_resource type="Texture2D" uid="uid://dqwrf244403r8" path="res://assets/hand.png" id="7_vivl0"]
+[ext_resource type="Texture2D" uid="uid://dfqfxu3j8fkp0" path="res://assets/shield.png" id="8_1e71e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ig7tw"]
 radius = 80.0062
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
-size = Vector2(41, 116)
+size = Vector2(63, 121)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vxx4"]
 bg_color = Color(0.32578987, 0.32578987, 0.32578987, 1)
@@ -27,8 +31,22 @@ script = ExtResource("1_0vxx4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="plr"]
 shape = SubResource("CircleShape2D_ig7tw")
 
-[node name="Icon" type="Sprite2D" parent="plr"]
-texture = ExtResource("2_4re53")
+[node name="Head" type="Sprite2D" parent="plr"]
+position = Vector2(16, -96)
+texture = ExtResource("2_gdxae")
+
+[node name="Body" type="Sprite2D" parent="plr"]
+position = Vector2(4, -3.0000093)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("3_275sl")
+
+[node name="Leg" type="Sprite2D" parent="plr"]
+position = Vector2(-43, 67)
+texture = ExtResource("4_kjr8o")
+
+[node name="Leg2" type="Sprite2D" parent="plr"]
+position = Vector2(30, 72)
+texture = ExtResource("4_kjr8o")
 
 [node name="score" type="Label" parent="plr"]
 offset_left = -56.0
@@ -43,16 +61,26 @@ script = ExtResource("3_tgr6k")
 script = ExtResource("4_xc41h")
 
 [node name="shield" type="Area2D" parent="plr/Node2D"]
-position = Vector2(141, -1)
+position = Vector2(115, -10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="plr/Node2D/shield"]
-position = Vector2(-1.5, 0)
+position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_0xm2m")
 
-[node name="Icon" type="Sprite2D" parent="plr/Node2D/shield"]
-position = Vector2(-1.75, 0.249999)
-scale = Vector2(0.324219, 0.902344)
-texture = ExtResource("2_4re53")
+[node name="Node2D" type="Node2D" parent="plr/Node2D/shield"]
+
+[node name="Arm" type="Sprite2D" parent="plr/Node2D/shield/Node2D"]
+position = Vector2(-33, 41)
+texture = ExtResource("7_vivl0")
+
+[node name="Arm2" type="Sprite2D" parent="plr/Node2D/shield/Node2D"]
+position = Vector2(-44, -14)
+texture = ExtResource("7_vivl0")
+
+[node name="Shield" type="Sprite2D" parent="plr/Node2D/shield/Node2D"]
+position = Vector2(-11, 2)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("8_1e71e")
 
 [node name="rot" type="Node2D" parent="."]
 visible = false
