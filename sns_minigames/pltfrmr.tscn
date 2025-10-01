@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cr88suev44554"]
+[gd_scene load_steps=5 format=3 uid="uid://cr88suev44554"]
 
 [ext_resource type="PackedScene" uid="uid://vn2erbrxcr04" path="res://char.tscn" id="1_qtnqo"]
+[ext_resource type="Texture2D" uid="uid://b08mv82n1aiaj" path="res://icon.svg" id="2_dfa6w"]
+[ext_resource type="Script" uid="uid://cgqk43miwpiwp" path="res://camtar.gd" id="3_i76yi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qtnqo"]
-size = Vector2(646, 20)
+size = Vector2(3864, 30)
 
 [node name="Node2D" type="Node2D"]
 
@@ -15,5 +17,17 @@ scale = Vector2(0.6, 0.6)
 position = Vector2(415, 480)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(2, -12)
+position = Vector2(304, -7)
 shape = SubResource("RectangleShape2D_qtnqo")
+
+[node name="Icon" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(304.50006, 45.5)
+scale = Vector2(30.273438, 1.0703125)
+texture = ExtResource("2_dfa6w")
+
+[node name="camtar" type="Node2D" parent="."]
+position = Vector2(352, 198)
+script = ExtResource("3_i76yi")
+
+[node name="Camera2D" type="Camera2D" parent="camtar"]
+limit_enabled = false

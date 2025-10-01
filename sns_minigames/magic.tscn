@@ -1,9 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://d2pb6rwew1d77"]
+[gd_scene load_steps=22 format=3 uid="uid://d2pb6rwew1d77"]
 
 [ext_resource type="Texture2D" uid="uid://b08mv82n1aiaj" path="res://icon.svg" id="1_hmia2"]
+[ext_resource type="Texture2D" uid="uid://d3vkk8ca7140p" path="res://assets/head.png" id="1_uxcsw"]
+[ext_resource type="Texture2D" uid="uid://b7fhjxu4o7ixa" path="res://assets/body.png" id="2_afyye"]
 [ext_resource type="Script" uid="uid://doqrsysx1f1cu" path="res://plr_mg.gd" id="2_b36ka"]
 [ext_resource type="Script" uid="uid://qclm27ov21l7" path="res://staff.gd" id="2_yagwd"]
-[ext_resource type="Texture2D" uid="uid://bf58feyuusp70" path="res://bubble.png" id="3_b36ka"]
+[ext_resource type="Texture2D" uid="uid://bf58feyuusp70" path="res://assets/bubble.png" id="3_b36ka"]
+[ext_resource type="Texture2D" uid="uid://dqwrf244403r8" path="res://assets/hand.png" id="3_h157y"]
+[ext_resource type="Texture2D" uid="uid://c0n8tfyb5rt70" path="res://assets/foot.png" id="4_4bjrh"]
 [ext_resource type="Script" uid="uid://000yplknl2dm" path="res://score_mg.gd" id="5_sxt0a"]
 [ext_resource type="Script" uid="uid://bi1f210344upa" path="res://prgrs_bar.gd" id="6_t6nvo"]
 
@@ -63,23 +67,47 @@ bg_color = Color(11.708403, 11.708403, 11.708403, 1)
 
 [node name="Node2D" type="Node2D"]
 
-[node name="targets" type="Node2D" parent="."]
+[node name="Head" type="Sprite2D" parent="."]
+position = Vector2(129, 404)
+texture = ExtResource("1_uxcsw")
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(106, 537)
-texture = ExtResource("1_hmia2")
+[node name="Body" type="Sprite2D" parent="."]
+position = Vector2(119, 507.1521)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_afyye")
+
+[node name="Leg" type="Sprite2D" parent="."]
+position = Vector2(63, 617.4021)
+texture = ExtResource("4_4bjrh")
+
+[node name="Leg2" type="Sprite2D" parent="."]
+position = Vector2(120.08055, 612.9552)
+scale = Vector2(1.01, 1)
+texture = ExtResource("4_4bjrh")
+
+[node name="targets" type="Node2D" parent="."]
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(107, 541)
 scale = Vector2(0.359375, 1)
 script = ExtResource("2_yagwd")
 
+[node name="Arm" type="Sprite2D" parent="Node2D"]
+position = Vector2(300.52173, -64.11847)
+scale = Vector2(2.7826087, 1)
+texture = ExtResource("3_h157y")
+
 [node name="staff" type="Sprite2D" parent="Node2D"]
-position = Vector2(314.435, -59)
-rotation = -0.0925025
-scale = Vector2(1, 1.44608)
-skew = -0.0925025
+position = Vector2(384.5524, -65.4668)
+rotation = 0.16233543
+scale = Vector2(1.3125157, 2.2973108)
+skew = 0.7407249
 texture = ExtResource("1_hmia2")
+
+[node name="Arm2" type="Sprite2D" parent="Node2D"]
+position = Vector2(180.86954, -11)
+scale = Vector2(2.7826087, 1)
+texture = ExtResource("3_h157y")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(606, 303)
