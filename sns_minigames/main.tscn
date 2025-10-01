@@ -56,6 +56,7 @@ text = "bow"
 
 [node name="quit" type="Button" parent="."]
 visible = false
+top_level = true
 layout_mode = 0
 offset_left = 1081.0
 offset_top = 22.0

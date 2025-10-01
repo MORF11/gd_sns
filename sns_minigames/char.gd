@@ -5,6 +5,11 @@ extends CharacterBody2D
 @export var ult_dmg = 0
 @export var rg_dmg = 0
 var j_fl = false
+var side = 'r'
+
+func _ready() -> void:
+	$AnimationPlayer.play("idle")
+
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -14,18 +19,21 @@ func _physics_process(delta):
 			j_fl = false
 		
 	if Input.is_action_pressed("up") and is_on_floor():
-		velocity.y += -1300
+		velocity.y += -2000
 		j_fl = true
 	
 	if Input.is_action_pressed("right") and abs(velocity.x) < 500:
-		velocity.x += 30
-		if global_scale.x != 0.6:
-			global_scale.x = 0.6
-	elif Input.is_action_pressed("left") and abs(velocity.x) < 500:
-		velocity.x -= 30
-		if scale.x != -0.6:
+		velocity.x += 100
+		$AnimationPlayer.play("walk")
+		if side != 'r':
 			scale.x = -0.6
-			print(global_scale.x," ",global_scale.y," ",scale.x," ",scale.y,"\n")
+			side = 'r'
+	elif Input.is_action_pressed("left") and abs(velocity.x) < 500:
+		velocity.x -= 100
+		$AnimationPlayer.play("walk")
+		if side != 'l':
+			scale.x = -0.6
+			side = 'l'
 	
 	if Input.is_action_pressed("atack"):
 		print(1)
@@ -33,6 +41,9 @@ func _physics_process(delta):
 		print(2)
 	elif Input.is_action_pressed("ult"):
 		print(3)
+	
+	if not Input.is_anything_pressed():
+		$AnimationPlayer.play("idle")
 	
 	velocity *= 0.92
 	move_and_slide()

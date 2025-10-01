@@ -30,6 +30,7 @@ func _on_quit_button_down() -> void:
 	for c in $".".get_children():
 		if c is Node2D:
 			c.queue_free()
+	$quit.position = Vector2(1081,22)
 
 
 func _on_shield_button_down() -> void:

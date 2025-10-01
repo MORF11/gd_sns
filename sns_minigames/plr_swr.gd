@@ -58,6 +58,8 @@ func _input(event: InputEvent) -> void:
 		$Area2D.position = Vector2(-142,0)
 		$Area2D.visible = true
 		$Area2D/CollisionShape2D.disabled = false
+		$"../Body".flip_h = true
+		$"../Head".flip_h = true
 		tmng = 0
 		cd = 20
 	elif event.is_action_pressed("right") and cd <= 0:
@@ -65,6 +67,8 @@ func _input(event: InputEvent) -> void:
 		$Area2D.position = Vector2(142,0)
 		$Area2D.visible = true
 		$Area2D/CollisionShape2D.disabled = false
+		$"../Body".flip_h = false
+		$"../Head".flip_h = false
 		tmng = 0
 		cd = 20
 	elif event.is_action_pressed("up") and cd <= 0:
