@@ -1,23 +1,43 @@
-[gd_scene load_steps=5 format=3 uid="uid://cr88suev44554"]
+[gd_scene load_steps=9 format=3 uid="uid://cr88suev44554"]
 
 [ext_resource type="PackedScene" uid="uid://vn2erbrxcr04" path="res://char.tscn" id="1_qtnqo"]
 [ext_resource type="Texture2D" uid="uid://b08mv82n1aiaj" path="res://icon.svg" id="2_dfa6w"]
 [ext_resource type="Script" uid="uid://cgqk43miwpiwp" path="res://camtar.gd" id="3_i76yi"]
+[ext_resource type="Texture2D" uid="uid://dqwrf244403r8" path="res://assets/hand.png" id="4_i76yi"]
+[ext_resource type="PackedScene" uid="uid://dk57ijnuluowh" path="res://base_enemy.tscn" id="5_pcwf8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qtnqo"]
-size = Vector2(3864, 30)
+size = Vector2(3864, 132)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pcwf8"]
+lifetime_randomness = 0.04
+emission_shape = 3
+emission_box_extents = Vector3(1400, 0, 1)
+angle_min = -109.99999
+angle_max = 111.000015
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 56.55
+initial_velocity_max = 76.25
+gravity = Vector3(0, 98, 0)
+scale_min = 0.099999994
+scale_max = 0.29999998
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pcwf8"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_qtnqo")]
 position = Vector2(352, 204)
 scale = Vector2(0.6, 0.6)
+collision_mask = 4
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(415, 480)
+collision_layer = 4
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(304, -7)
+position = Vector2(304, 44)
 shape = SubResource("RectangleShape2D_qtnqo")
 
 [node name="Icon" type="Sprite2D" parent="StaticBody2D"]
@@ -26,8 +46,39 @@ scale = Vector2(30.273438, 1.0703125)
 texture = ExtResource("2_dfa6w")
 
 [node name="camtar" type="Node2D" parent="."]
-position = Vector2(352, 198)
+position = Vector2(352, 203)
 script = ExtResource("3_i76yi")
 
 [node name="Camera2D" type="Camera2D" parent="camtar"]
 limit_enabled = false
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="camtar/Camera2D"]
+texture_filter = 1
+position = Vector2(0, -335)
+amount = 30
+texture = ExtResource("4_i76yi")
+lifetime = 3.5
+preprocess = 2.0
+process_material = SubResource("ParticleProcessMaterial_pcwf8")
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("5_pcwf8")]
+position = Vector2(611, 378)
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("5_pcwf8")]
+position = Vector2(923, 378)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(52, 386)
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("RectangleShape2D_pcwf8")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(1162, 373)
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource("RectangleShape2D_pcwf8")
