@@ -62,6 +62,12 @@ ult={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="plr"
+2d_physics/layer_2="nms"
+2d_physics/layer_3="wls"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

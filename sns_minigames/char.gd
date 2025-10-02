@@ -5,35 +5,38 @@ extends CharacterBody2D
 @export var ult_regen = 0
 @export var rg_dmg = 0
 @onready var a = $AnimationPlayer
-var j_fl = false
 var side = 'r'
 var unbreakable = ["atack","range","ult"]
+var ar = preload("res://arrow.tscn")
+var ins
 
 func _ready() -> void:
 	a.play("idle")
 
 
 func _physics_process(delta):
+	if a.current_animation == "range":
+			a.speed_scale = 0.5
+	else:
+		a.speed_scale = 1
+		
 	if not is_on_floor():
 		velocity.y += 9.8 * delta * 300
-		if j_fl and velocity.y > 0:
-			velocity.y += 500
-			j_fl = false
 		
 	if Input.is_action_pressed("up") and is_on_floor():
-		velocity.y += -2000
-		j_fl = true
+		velocity.y += -1400
+		a.play("fall")
 	
-	if Input.is_action_pressed("right") and abs(velocity.x) < 500:
-		velocity.x += 100
+	if Input.is_action_pressed("right") and abs(velocity.x) < 700:
+		velocity.x += 200
 		if is_on_floor():
 			if a.current_animation not in unbreakable:
 				a.play("walk")
 		if side != 'r':
 			scale.x = -0.6
 			side = 'r'
-	elif Input.is_action_pressed("left") and abs(velocity.x) < 500:
-		velocity.x -= 100
+	elif Input.is_action_pressed("left") and abs(velocity.x) < 700:
+		velocity.x -= 200
 		if is_on_floor():
 			if a.current_animation not in unbreakable:
 				a.play("walk")
@@ -42,8 +45,16 @@ func _physics_process(delta):
 			side = 'l'
 	
 	if Input.is_action_pressed("atack"):
-		a.play("atack")
+		if a.current_animation not in unbreakable:
+			a.play("atack")
 	elif Input.is_action_pressed("range"):
+		if not a.current_animation == "range":
+			ins = ar.instantiate()
+			ins.dmg = rg_dmg
+			ins.scale *= 1 if side == 'r' else -1
+			ins.velocity = Vector2(1500,-150) if side == 'r' else Vector2(-1500,-150)
+			ins.position = $Arm.global_position
+			$"..".add_child(ins)
 		a.play("range")
 	elif Input.is_action_pressed("ult"):
 		print(3)
@@ -55,5 +66,5 @@ func _physics_process(delta):
 			if a.current_animation not in unbreakable:
 				a.play("fall")
 	
-	velocity *= 0.92
+	velocity.x *= 0.9
 	move_and_slide()
