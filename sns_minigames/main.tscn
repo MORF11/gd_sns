@@ -16,43 +16,43 @@ script = ExtResource("1_ig7tw")
 
 [node name="shield" type="Button" parent="."]
 layout_mode = 0
-offset_left = 212.0
-offset_top = 116.0
-offset_right = 267.0
-offset_bottom = 147.0
-text = "shield"
+offset_left = 256.0
+offset_top = 136.0
+offset_right = 341.0
+offset_bottom = 167.0
+text = "здоровье"
 
 [node name="sword" type="Button" parent="."]
 layout_mode = 0
-offset_left = 829.0
-offset_top = 119.0
-offset_right = 885.0
-offset_bottom = 150.0
-text = "sword"
+offset_left = 880.0
+offset_top = 136.0
+offset_right = 936.0
+offset_bottom = 167.0
+text = "урон"
 
 [node name="magic" type="Button" parent="."]
 layout_mode = 0
-offset_left = 849.0
-offset_top = 464.0
-offset_right = 903.0
-offset_bottom = 495.0
-text = "magic"
+offset_left = 880.0
+offset_top = 456.0
+offset_right = 938.0
+offset_bottom = 487.0
+text = "магия"
 
 [node name="play" type="Button" parent="."]
 layout_mode = 0
-offset_left = 485.0
-offset_top = 245.0
-offset_right = 655.0
-offset_bottom = 362.0
-text = "PLAY"
+offset_left = 496.0
+offset_top = 240.0
+offset_right = 666.0
+offset_bottom = 357.0
+text = "ИГРАТЬ"
 
 [node name="bow" type="Button" parent="."]
 layout_mode = 0
-offset_left = 217.0
-offset_top = 455.0
-offset_right = 271.0
-offset_bottom = 486.0
-text = "bow"
+offset_left = 240.0
+offset_top = 456.0
+offset_right = 365.0
+offset_bottom = 487.0
+text = "дальняя атака"
 
 [node name="quit" type="Button" parent="."]
 visible = false
@@ -62,14 +62,23 @@ offset_left = 1081.0
 offset_top = 22.0
 offset_right = 1120.0
 offset_bottom = 53.0
-text = "quit"
+text = "выйти"
+
+[node name="howto" type="Button" parent="."]
+top_level = true
+layout_mode = 0
+offset_left = 528.0
+offset_top = 456.0
+offset_right = 623.0
+offset_bottom = 487.0
+text = "как играть"
 
 [node name="lvl" type="Label" parent="."]
 layout_mode = 0
 offset_left = 528.0
-offset_top = 14.0
+offset_top = 16.0
 offset_right = 629.0
-offset_bottom = 83.0
+offset_bottom = 85.0
 theme_override_font_sizes/font_size = 50
 text = "0"
 horizontal_alignment = 1
@@ -81,3 +90,4 @@ script = ExtResource("2_0xm2m")
 [connection signal="button_down" from="play" to="." method="_on_play_button_down"]
 [connection signal="button_down" from="bow" to="." method="_on_bow_button_down"]
 [connection signal="button_down" from="quit" to="." method="_on_quit_button_down"]
+[connection signal="button_down" from="howto" to="." method="_on_howto_button_down"]

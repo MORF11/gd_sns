@@ -5,9 +5,10 @@ var mg = preload("res://magic.tscn")
 var bw = preload("res://bow.tscn")
 var sw = preload("res://sword.tscn")
 var pl = preload("res://pltfrmr.tscn")
+var ht = preload("res://howto.tscn")
 var is_inv = false
 
-func inv(trnng):
+func inv(trnng,pltfrmr):
 	var q = $".".get_children()
 	if not is_inv:
 		for c in q:
@@ -19,40 +20,45 @@ func inv(trnng):
 	if trnng:
 		$lvl.visible = true
 	if not is_inv:
-		$quit.visible = true
+		if not pltfrmr:
+			$quit.visible = true
 		$lvl.visible = false
 	
 	is_inv = not is_inv
 
 
 func _on_quit_button_down() -> void:
-	inv(true)
+	inv(true,false)
 	for c in $".".get_children():
 		if c is Node2D:
 			c.queue_free()
-	$quit.position = Vector2(1081,22)
 
 
 func _on_shield_button_down() -> void:
-	inv(true)
+	inv(true,false)
 	add_child(sh.instantiate())
 
 
 func _on_magic_button_down() -> void:
-	inv(true)
+	inv(true,false)
 	add_child(mg.instantiate())
 
 
 func _on_bow_button_down() -> void:
-	inv(true)
+	inv(true,false)
 	add_child(bw.instantiate())
 
 
 func _on_sword_button_down() -> void:
-	inv(true)
+	inv(true,false)
 	add_child(sw.instantiate())
 
 
 func _on_play_button_down() -> void:
-	inv(false)
+	inv(false,true)
 	add_child(pl.instantiate())
+
+
+func _on_howto_button_down() -> void:
+	inv(false,false)
+	add_child(ht.instantiate())
