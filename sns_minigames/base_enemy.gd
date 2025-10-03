@@ -16,5 +16,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.collision_layer == 2 or body.collision_layer == 4:
+	if body.collision_layer != 1:
 		side *= -1
+	if body.collision_layer == 1:
+		pass #do dmg

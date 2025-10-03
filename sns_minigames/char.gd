@@ -16,7 +16,9 @@ func _ready() -> void:
 
 func _physics_process(delta):
 	if a.current_animation == "range":
-			a.speed_scale = 0.5
+		a.speed_scale = 0.5
+	elif a.current_animation == 'idle':
+		a.speed_scale = 1.5
 	else:
 		a.speed_scale = 1
 		
@@ -57,7 +59,8 @@ func _physics_process(delta):
 			$"..".add_child(ins)
 		a.play("range")
 	elif Input.is_action_pressed("ult"):
-		print(3)
+		if true:
+			a.play('ult')
 	
 	if not Input.is_anything_pressed() and is_on_floor():
 		if a.current_animation not in unbreakable:

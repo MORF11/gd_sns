@@ -67,6 +67,7 @@ ult={
 2d_physics/layer_1="plr"
 2d_physics/layer_2="nms"
 2d_physics/layer_3="wls"
+2d_physics/layer_4="base_enemy_markers"
 
 [rendering]
 
