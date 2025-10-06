@@ -1,13 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://cr88suev44554"]
+[gd_scene load_steps=21 format=3 uid="uid://cr88suev44554"]
 
 [ext_resource type="PackedScene" uid="uid://vn2erbrxcr04" path="res://char.tscn" id="1_qtnqo"]
-[ext_resource type="Texture2D" uid="uid://b08mv82n1aiaj" path="res://icon.svg" id="2_dfa6w"]
+[ext_resource type="Texture2D" uid="uid://beh3i5fdpi3dn" path="res://assets/bgs/bg12.png" id="3_anjje"]
 [ext_resource type="Script" uid="uid://cgqk43miwpiwp" path="res://camtar.gd" id="3_i76yi"]
 [ext_resource type="Texture2D" uid="uid://dqwrf244403r8" path="res://assets/hand.png" id="4_i76yi"]
+[ext_resource type="Texture2D" uid="uid://7y7ogfqtltob" path="res://assets/bgs/bg13.png" id="4_xek70"]
+[ext_resource type="Texture2D" uid="uid://by0gei56bex30" path="res://assets/bgs/bg14.png" id="5_na3rd"]
 [ext_resource type="PackedScene" uid="uid://dk57ijnuluowh" path="res://base_enemy.tscn" id="5_pcwf8"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtnqo"]
-size = Vector2(3864, 132)
+[ext_resource type="Texture2D" uid="uid://bv1h5lso2lqdi" path="res://assets/bgs/bg15.png" id="6_y3uln"]
 
 [sub_resource type="Curve" id="Curve_pcwf8"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.32584274), 0.0, 0.0, 0, 0]
@@ -32,28 +32,39 @@ alpha_curve = SubResource("CurveTexture_6jvfb")
 turbulence_influence_min = 0.0
 turbulence_influence_max = 0.020000001
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xek70"]
+bg_color = Color(0.23725004, 0.07300002, 0.73, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qeq1m"]
+bg_color = Color(0.24705882, 0, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_anjje"]
+bg_color = Color(0.32, 0.08319999, 0.08319999, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khrby"]
+bg_color = Color(0.5019608, 0.03137255, 0.03137255, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtnqo"]
+size = Vector2(3864, 129)
+
+[sub_resource type="Gradient" id="Gradient_pcwf8"]
+offsets = PackedFloat32Array(0.54395604, 1)
+colors = PackedColorArray(0.31, 0.31, 0.31, 1, 0.8217887, 0.8217887, 0.8217885, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6jvfb"]
+gradient = SubResource("Gradient_pcwf8")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.508547, 1)
+fill_to = Vector2(0.491453, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_plua7"]
+texture = SubResource("GradientTexture2D_6jvfb")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pcwf8"]
 
 [node name="Node2D" type="Node2D"]
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_qtnqo")]
-position = Vector2(352, 204)
-scale = Vector2(0.6, 0.6)
-collision_mask = 4
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(415, 480)
-collision_layer = 4
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(304, 44)
-shape = SubResource("RectangleShape2D_qtnqo")
-
-[node name="Icon" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(304.50006, 45.5)
-scale = Vector2(30.273438, 1.0703125)
-texture = ExtResource("2_dfa6w")
 
 [node name="camtar" type="Node2D" parent="."]
 position = Vector2(352, 203)
@@ -62,21 +73,114 @@ script = ExtResource("3_i76yi")
 [node name="Camera2D" type="Camera2D" parent="camtar"]
 limit_enabled = false
 
+[node name="bg" type="Node2D" parent="camtar/Camera2D"]
+
+[node name="ColorRect" type="ColorRect" parent="camtar/Camera2D/bg"]
+offset_left = -913.0
+offset_top = -462.0
+offset_right = 904.0
+offset_bottom = 452.0
+color = Color(0.096204735, 0.09620475, 0.096204735, 1)
+
+[node name="Parallax2D2" type="Parallax2D" parent="camtar/Camera2D/bg"]
+scroll_scale = Vector2(0.1, 1)
+scroll_offset = Vector2(5, -119)
+repeat_size = Vector2(1756.73, 0)
+repeat_times = 31
+
+[node name="Bg12" type="Sprite2D" parent="camtar/Camera2D/bg/Parallax2D2"]
+position = Vector2(-7.0000305, -4)
+scale = Vector2(18.18, 9.179999)
+texture = ExtResource("3_anjje")
+
+[node name="Parallax2D3" type="Parallax2D" parent="camtar/Camera2D/bg"]
+scroll_scale = Vector2(0.21, 1)
+scroll_offset = Vector2(5, -119)
+repeat_size = Vector2(1761.19, 0)
+repeat_times = 31
+
+[node name="Bg13" type="Sprite2D" parent="camtar/Camera2D/bg/Parallax2D3"]
+position = Vector2(-4.4999084, -3.5000458)
+scale = Vector2(18.35, 9.13)
+texture = ExtResource("4_xek70")
+
+[node name="Parallax2D4" type="Parallax2D" parent="camtar/Camera2D/bg"]
+scroll_scale = Vector2(0.34, 1)
+scroll_offset = Vector2(5, -119)
+repeat_size = Vector2(1725.24, 0)
+repeat_times = 31
+
+[node name="Bg14" type="Sprite2D" parent="camtar/Camera2D/bg/Parallax2D4"]
+position = Vector2(-0.9999695, -0.9999771)
+scale = Vector2(18.16, 9.139999)
+texture = ExtResource("5_na3rd")
+
+[node name="Parallax2D5" type="Parallax2D" parent="camtar/Camera2D/bg"]
+scroll_scale = Vector2(0.645, 1)
+scroll_offset = Vector2(5, -119)
+repeat_size = Vector2(1465.93, 0)
+repeat_times = 31
+
+[node name="Bg15" type="Sprite2D" parent="camtar/Camera2D/bg/Parallax2D5"]
+modulate = Color(0.9166399, 0.91663986, 0.9166398, 1)
+position = Vector2(-2.0699925, -227.00006)
+scale = Vector2(18.250002, 16.34)
+texture = ExtResource("6_y3uln")
+
 [node name="GPUParticles2D" type="GPUParticles2D" parent="camtar/Camera2D"]
 texture_filter = 1
 position = Vector2(0, -335)
-amount = 30
+amount = 15
 texture = ExtResource("4_i76yi")
-lifetime = 3.5
+lifetime = 1.95
 preprocess = 2.0
 process_material = SubResource("ParticleProcessMaterial_pcwf8")
 
 [node name="Button" type="Button" parent="camtar/Camera2D"]
-offset_left = 495.0
-offset_top = -292.0
-offset_right = 556.0
-offset_bottom = -261.0
+offset_left = 791.0
+offset_top = -416.0
+offset_right = 852.0
+offset_bottom = -385.0
+focus_mode = 0
 text = "выйти"
+
+[node name="ult" type="ProgressBar" parent="camtar/Camera2D"]
+offset_left = -874.0
+offset_top = -430.0
+offset_right = -587.0
+offset_bottom = -403.0
+theme_override_styles/background = SubResource("StyleBoxFlat_xek70")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qeq1m")
+
+[node name="hp" type="ProgressBar" parent="camtar/Camera2D"]
+offset_left = -874.0
+offset_top = -392.0
+offset_right = -587.0
+offset_bottom = -365.0
+theme_override_styles/background = SubResource("StyleBoxFlat_anjje")
+theme_override_styles/fill = SubResource("StyleBoxFlat_khrby")
+value = 100.0
+
+[node name="plr" parent="." instance=ExtResource("1_qtnqo")]
+position = Vector2(352, 224)
+scale = Vector2(0.6, 0.6)
+collision_mask = 4
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(415, 480)
+collision_layer = 5
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(304, 45.5)
+shape = SubResource("RectangleShape2D_qtnqo")
+
+[node name="Panel" type="Panel" parent="StaticBody2D"]
+offset_left = -1634.0
+offset_top = -23.0
+offset_right = 2235.0
+offset_bottom = 274.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_plua7")
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("5_pcwf8")]
 position = Vector2(611, 378)
@@ -86,16 +190,16 @@ position = Vector2(923, 378)
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 position = Vector2(52, 386)
-collision_layer = 4
-collision_mask = 3
+collision_layer = 8
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 shape = SubResource("RectangleShape2D_pcwf8")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(1162, 373)
-collision_layer = 4
-collision_mask = 3
+position = Vector2(2610, 386)
+collision_layer = 8
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
 shape = SubResource("RectangleShape2D_pcwf8")

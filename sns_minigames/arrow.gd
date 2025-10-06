@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var dmg = 0
+@export var dmg = 10
 
 func _process(_delta: float) -> void:
 	$".".rotate(get_angle_to($".".position+velocity))
@@ -15,9 +15,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		body.del(0.1)
 		$"..".score += 1
 		velocity *= 0.7
-		$"..".get_child(3).add()
-	elif false:
-		pass
-		# do dmg to enemy (dmg itself in arg)
+		$"..".get_child(7).add()
+	elif body is CharacterBody2D and body.name != 'plr':
+		body.dmgd(dmg,position)
 	elif body is StaticBody2D:
 		queue_free()

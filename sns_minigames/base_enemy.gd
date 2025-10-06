@@ -1,7 +1,18 @@
 extends CharacterBody2D
 
-var dmg = 10
+var damage = 10
+var hp = 100
 var side = -1 if randi()%2 == 1 else 1
+
+func dmgd(dmg,pos):
+	hp -= dmg
+	$AnimatedSprite2D.modulate.r = 10
+	$ProgressBar.value = hp
+	velocity.y -= 100
+	velocity.x += 100 if pos.x < position.x else -100
+	await get_tree().create_timer(0.1).timeout
+	$AnimatedSprite2D.modulate.r = 1
+
 
 func _ready() -> void:
 	$AnimatedSprite2D.play("default")
@@ -16,5 +27,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.collision_layer == 2 or body.collision_layer == 4:
+	if body.collision_layer != 1:
 		side *= -1
+	if body.collision_layer == 1:
+		body.dmgd(damage,position)

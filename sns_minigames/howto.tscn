@@ -1,41 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwwxkpysy66co"]
-
-[ext_resource type="Texture2D" uid="uid://b08mv82n1aiaj" path="res://icon.svg" id="1_wcxuv"]
+[gd_scene format=3 uid="uid://dwwxkpysy66co"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="pics" type="Node2D" parent="."]
 
-[node name="Icon" type="Sprite2D" parent="pics"]
-position = Vector2(553, 278.25)
-scale = Vector2(7.0625, 4.2617188)
-texture = ExtResource("1_wcxuv")
-
-[node name="Icon2" type="Sprite2D" parent="pics"]
-position = Vector2(1614, 278.99997)
-scale = Vector2(7.0625, 4.2617188)
-texture = ExtResource("1_wcxuv")
-
-[node name="Icon3" type="Sprite2D" parent="pics"]
-position = Vector2(2686, 287)
-scale = Vector2(7.0625, 4.2617188)
-texture = ExtResource("1_wcxuv")
-
-[node name="Icon4" type="Sprite2D" parent="pics"]
-position = Vector2(3751, 287)
-scale = Vector2(7.0625, 4.2617188)
-texture = ExtResource("1_wcxuv")
-
 [node name="Button" type="Button" parent="."]
-offset_left = 52.0
-offset_top = 587.0
-offset_right = 134.0
-offset_bottom = 618.0
+offset_left = 112.0
+offset_top = 832.0
+offset_right = 194.0
+offset_bottom = 863.0
+focus_mode = 0
 text = "прошлая"
 
 [node name="Button2" type="Button" parent="."]
-offset_left = 962.0
-offset_top = 583.0
-offset_right = 1063.0
-offset_bottom = 614.0
+offset_left = 1600.0
+offset_top = 832.0
+offset_right = 1701.0
+offset_bottom = 863.0
+focus_mode = 0
 text = "следующая"

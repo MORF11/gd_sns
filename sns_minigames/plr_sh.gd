@@ -24,11 +24,14 @@ func _ready() -> void:
 	for i in range(88):
 		$"../rot".rotate(0.5)
 		points.append($"../rot/Icon".global_position)
+	for i in range(100):
+		print()
 
 
 func _process(_delta: float) -> void:
 	c += 1
-	if (c % 30 if hits < 100 else c % 20) != 0:
+	if (c % 30 if hits < 150 else c % 15) != 0:
+	#if c % 40-int((hits+1)/10) != 0:
 		return
 	if randi()%15 != 0:
 		spawn(randi()%88)

@@ -6,7 +6,7 @@ var ar_ins
 var string = 0
 var is_pr = false
 var tar = preload("res://target.tscn")
-var tr
+var trt
 var fr = 0
 var power = 2000
 
@@ -40,13 +40,13 @@ func _process(_delta: float) -> void:
 		$Node2D/staff.modulate.g = 1
 	fr += 1
 	if fr % 40 == 0:
-		tr = tar.instantiate()
-		tr.position = Vector2(randi()%700+300,randi()%400+100)
+		trt = tar.instantiate()
+		trt.position = Vector2(randi()%700+300,randi()%400+100)
 		if score > 100:
-			tr.time = 2.1
+			trt.time = 2.1
 		elif score > 200:
-			tr.time = 1.8
+			trt.time = 1.8
 		elif score > 300:
-			tr.time = 1.5
-		tr.get_child(1).connect('timeout',loose)
-		$"targets".add_child(tr)
+			trt.time = 1.5
+		trt.get_child(1).connect('timeout',loose)
+		$"targets".add_child(trt)

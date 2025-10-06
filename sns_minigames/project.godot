@@ -15,6 +15,11 @@ run/main_scene="uid://kt1te4rsdjmk"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=1800
+window/size/viewport_height=900
+
 [input]
 
 left={
@@ -67,6 +72,7 @@ ult={
 2d_physics/layer_1="plr"
 2d_physics/layer_2="nms"
 2d_physics/layer_3="wls"
+2d_physics/layer_4="base_enemy_markers"
 
 [rendering]
 
