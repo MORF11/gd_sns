@@ -4,9 +4,9 @@ var ap = preload("res://apple.tscn")
 @export var score = 0
 var fr = 0
 var ins
-var points = [Vector2(500,0),
-Vector2(-500,0),
-Vector2(0,-500)]
+var points = [Vector2(800,0),
+Vector2(-800,0),
+Vector2(0,-800)]
 var tmng = 0
 var cd = 0
 var sp_fl = false

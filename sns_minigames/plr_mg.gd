@@ -4,7 +4,7 @@ var sp = 3500
 var tar = preload("res://target.tscn")
 @export var score = 0
 var fr = 0
-var tr
+var trg
 
 func do_movement(delta):
 	var ms = get_global_mouse_position()
@@ -23,17 +23,17 @@ func loose():
 func _process(delta: float) -> void:
 	do_movement(delta)
 	fr += 1
-	if fr % 40 == 0:
-		tr = tar.instantiate()
-		tr.position = Vector2(randi()%700+300,randi()%400+100)
+	if fr % 70 == 0:
+		trg = tar.instantiate()
+		trg.position = Vector2(randi()%1000+500,randi()%600+100)
 		if score > 100:
-			tr.time = 2.1
+			trg.time = 3.5
 		elif score > 200:
-			tr.time = 1.8
+			trg.time = 3
 		elif score > 300:
-			tr.time = 1.5
-		tr.get_child(1).connect('timeout',loose)
-		$"../targets".add_child(tr)
+			trg.time = 2.7
+		trg.get_child(1).connect('timeout',loose)
+		$"../targets".add_child(trg)
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

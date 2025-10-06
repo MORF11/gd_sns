@@ -1,28 +1,96 @@
-[gd_scene load_steps=12 format=3 uid="uid://itojpg6nq204"]
+[gd_scene load_steps=20 format=3 uid="uid://itojpg6nq204"]
 
 [ext_resource type="Texture2D" uid="uid://b08mv82n1aiaj" path="res://icon.svg" id="1_2of8d"]
 [ext_resource type="Script" uid="uid://38ekk2owvakp" path="res://plr_bow.gd" id="1_cx05r"]
 [ext_resource type="Script" uid="uid://qclm27ov21l7" path="res://staff.gd" id="2_60xqc"]
+[ext_resource type="Texture2D" uid="uid://uqvx6nyxqhwr" path="res://assets/bgs/bg11.png" id="2_tcx5s"]
+[ext_resource type="Texture2D" uid="uid://beh3i5fdpi3dn" path="res://assets/bgs/bg12.png" id="3_ft4oj"]
 [ext_resource type="Texture2D" uid="uid://dqwrf244403r8" path="res://assets/hand.png" id="3_qlpkw"]
+[ext_resource type="Texture2D" uid="uid://7y7ogfqtltob" path="res://assets/bgs/bg13.png" id="4_8slvx"]
 [ext_resource type="Script" uid="uid://crpkyomcixxwf" path="res://score_bow.gd" id="4_cx05r"]
 [ext_resource type="Script" uid="uid://bi1f210344upa" path="res://prgrs_bar.gd" id="5_58rgb"]
+[ext_resource type="Texture2D" uid="uid://by0gei56bex30" path="res://assets/bgs/bg14.png" id="5_c31t4"]
+[ext_resource type="Texture2D" uid="uid://bv1h5lso2lqdi" path="res://assets/bgs/bg15.png" id="6_tbchv"]
 [ext_resource type="Texture2D" uid="uid://d3vkk8ca7140p" path="res://assets/head.png" id="7_3o7jq"]
 [ext_resource type="Texture2D" uid="uid://b7fhjxu4o7ixa" path="res://assets/body.png" id="8_srotc"]
 [ext_resource type="Texture2D" uid="uid://c0n8tfyb5rt70" path="res://assets/foot.png" id="9_swcsf"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a60kk"]
+[sub_resource type="Curve" id="Curve_hsb0k"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.32584274), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_fjapx"]
+curve = SubResource("Curve_hsb0k")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_404wk"]
+lifetime_randomness = 0.04
+emission_shape = 3
+emission_box_extents = Vector3(900, 0, 1)
+angle_min = -109.99999
+angle_max = 111.000015
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 56.55
+initial_velocity_max = 76.25
+gravity = Vector3(0, 98, 0)
+scale_min = 0.099999994
+scale_max = 0.29999998
+alpha_curve = SubResource("CurveTexture_fjapx")
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.020000001
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qlpkw"]
 bg_color = Color(0.32578987, 0.32578987, 0.32578987, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5kp7"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3o7jq"]
 bg_color = Color(11.708403, 11.708403, 11.708403, 1)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_cx05r")
 
+[node name="bg" type="Node2D" parent="."]
+
+[node name="Bg16" type="Sprite2D" parent="bg"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(893.99994, 56)
+scale = Vector2(18.54, 2.6399999)
+texture = ExtResource("2_tcx5s")
+
+[node name="Bg11" type="Sprite2D" parent="bg"]
+position = Vector2(901.25, 448.00003)
+scale = Vector2(18.134998, 8.98)
+texture = ExtResource("2_tcx5s")
+
+[node name="Bg12" type="Sprite2D" parent="bg"]
+position = Vector2(905, 437.49997)
+scale = Vector2(18.26, 9.369999)
+texture = ExtResource("3_ft4oj")
+
+[node name="Bg13" type="Sprite2D" parent="bg"]
+position = Vector2(902, 446.00006)
+scale = Vector2(18.26, 8.9800005)
+texture = ExtResource("4_8slvx")
+
+[node name="Bg14" type="Sprite2D" parent="bg"]
+position = Vector2(896, 506.50003)
+scale = Vector2(18.12, 10.650001)
+texture = ExtResource("5_c31t4")
+
+[node name="Bg15" type="Sprite2D" parent="bg"]
+position = Vector2(903, 490.00003)
+scale = Vector2(18.179998, 8.32)
+texture = ExtResource("6_tbchv")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="bg"]
+position = Vector2(905, -11)
+amount = 15
+texture = ExtResource("3_qlpkw")
+lifetime = 3.84
+process_material = SubResource("ParticleProcessMaterial_404wk")
+
 [node name="targets" type="Node2D" parent="."]
 
 [node name="Node2D" type="Node2D" parent="."]
-position = Vector2(107, 541)
+position = Vector2(203, 735)
 scale = Vector2(0.359375, 1)
 script = ExtResource("2_60xqc")
 
@@ -44,41 +112,41 @@ scale = Vector2(2.7826087, 1)
 texture = ExtResource("3_qlpkw")
 
 [node name="score" type="Label" parent="."]
-offset_left = 552.0
-offset_top = 20.0
-offset_right = 653.0
-offset_bottom = 89.0
+offset_left = 866.0
+offset_top = 14.0
+offset_right = 967.0
+offset_bottom = 83.0
 theme_override_font_sizes/font_size = 50
 text = "qwe"
 script = ExtResource("4_cx05r")
 
+[node name="Head" type="Sprite2D" parent="."]
+position = Vector2(225, 598)
+texture = ExtResource("7_3o7jq")
+
+[node name="Body" type="Sprite2D" parent="."]
+position = Vector2(215, 701.1521)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("8_srotc")
+
+[node name="Leg" type="Sprite2D" parent="."]
+position = Vector2(159, 811.4021)
+texture = ExtResource("9_swcsf")
+
+[node name="Leg2" type="Sprite2D" parent="."]
+position = Vector2(216.08057, 806.9552)
+scale = Vector2(1.01, 1)
+texture = ExtResource("9_swcsf")
+
 [node name="lvl" type="ProgressBar" parent="."]
 offset_left = 7.0
 offset_top = 16.0
-offset_right = 30.0
-offset_bottom = 639.0
-theme_override_styles/background = SubResource("StyleBoxFlat_a60kk")
-theme_override_styles/fill = SubResource("StyleBoxFlat_p5kp7")
+offset_right = 74.0
+offset_bottom = 880.0
+theme_override_styles/background = SubResource("StyleBoxFlat_qlpkw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3o7jq")
 rounded = true
 allow_greater = true
 fill_mode = 3
 show_percentage = false
 script = ExtResource("5_58rgb")
-
-[node name="Head" type="Sprite2D" parent="."]
-position = Vector2(129, 404)
-texture = ExtResource("7_3o7jq")
-
-[node name="Body" type="Sprite2D" parent="."]
-position = Vector2(119, 507.1521)
-scale = Vector2(1.3, 1.3)
-texture = ExtResource("8_srotc")
-
-[node name="Leg" type="Sprite2D" parent="."]
-position = Vector2(63, 617.4021)
-texture = ExtResource("9_swcsf")
-
-[node name="Leg2" type="Sprite2D" parent="."]
-position = Vector2(120.08055, 612.9552)
-scale = Vector2(1.01, 1)
-texture = ExtResource("9_swcsf")

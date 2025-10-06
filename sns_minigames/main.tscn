@@ -1,83 +1,159 @@
-[gd_scene load_steps=3 format=3 uid="uid://kt1te4rsdjmk"]
+[gd_scene load_steps=12 format=3 uid="uid://kt1te4rsdjmk"]
 
 [ext_resource type="Script" uid="uid://bf7i68fykns4x" path="res://ui.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://c78pykn3mt8jq" path="res://lvl.gd" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://uqvx6nyxqhwr" path="res://assets/bgs/bg11.png" id="2_5vw27"]
+[ext_resource type="Texture2D" uid="uid://beh3i5fdpi3dn" path="res://assets/bgs/bg12.png" id="2_7mycd"]
+[ext_resource type="Texture2D" uid="uid://7y7ogfqtltob" path="res://assets/bgs/bg13.png" id="3_272bh"]
+[ext_resource type="Texture2D" uid="uid://by0gei56bex30" path="res://assets/bgs/bg14.png" id="4_5vw27"]
+[ext_resource type="Texture2D" uid="uid://bv1h5lso2lqdi" path="res://assets/bgs/bg15.png" id="5_kek77"]
+[ext_resource type="Texture2D" uid="uid://dqwrf244403r8" path="res://assets/hand.png" id="7_272bh"]
+
+[sub_resource type="Curve" id="Curve_5vw27"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.32584274), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6jvfb"]
+curve = SubResource("Curve_5vw27")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kek77"]
+lifetime_randomness = 0.04
+emission_shape = 3
+emission_box_extents = Vector3(900, 0, 1)
+angle_min = -109.99999
+angle_max = 111.000015
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 56.55
+initial_velocity_max = 76.25
+gravity = Vector3(0, 98, 0)
+scale_min = 0.099999994
+scale_max = 0.29999998
+alpha_curve = SubResource("CurveTexture_6jvfb")
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.020000001
 
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1152.0
-offset_bottom = -648.0
+offset_right = -1792.0
+offset_bottom = -892.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ig7tw")
 
+[node name="bg" type="Node2D" parent="."]
+
+[node name="Bg16" type="Sprite2D" parent="bg"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(893.99994, 56)
+scale = Vector2(18.54, 2.6399999)
+texture = ExtResource("2_5vw27")
+
+[node name="Bg11" type="Sprite2D" parent="bg"]
+position = Vector2(901.25, 448.00003)
+scale = Vector2(18.134998, 8.98)
+texture = ExtResource("2_5vw27")
+
+[node name="Bg12" type="Sprite2D" parent="bg"]
+position = Vector2(905, 437.49997)
+scale = Vector2(18.26, 9.369999)
+texture = ExtResource("2_7mycd")
+
+[node name="Bg13" type="Sprite2D" parent="bg"]
+position = Vector2(902, 446.00006)
+scale = Vector2(18.26, 8.9800005)
+texture = ExtResource("3_272bh")
+
+[node name="Bg14" type="Sprite2D" parent="bg"]
+position = Vector2(896, 506.50003)
+scale = Vector2(18.12, 10.650001)
+texture = ExtResource("4_5vw27")
+
+[node name="Bg15" type="Sprite2D" parent="bg"]
+position = Vector2(903, 490.00003)
+scale = Vector2(18.179998, 8.32)
+texture = ExtResource("5_kek77")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="bg"]
+position = Vector2(905, -11)
+amount = 15
+texture = ExtResource("7_272bh")
+lifetime = 3.84
+process_material = SubResource("ParticleProcessMaterial_kek77")
+
 [node name="shield" type="Button" parent="."]
 layout_mode = 0
-offset_left = 256.0
-offset_top = 136.0
-offset_right = 341.0
-offset_bottom = 167.0
+offset_left = 368.0
+offset_top = 128.0
+offset_right = 453.0
+offset_bottom = 159.0
+focus_mode = 0
 text = "здоровье"
 
 [node name="sword" type="Button" parent="."]
 layout_mode = 0
-offset_left = 880.0
-offset_top = 136.0
-offset_right = 936.0
-offset_bottom = 167.0
-text = "урон"
+offset_left = 1208.0
+offset_top = 128.0
+offset_right = 1348.0
+offset_bottom = 159.0
+focus_mode = 0
+text = "ближняя атака"
 
 [node name="magic" type="Button" parent="."]
 layout_mode = 0
-offset_left = 880.0
-offset_top = 456.0
-offset_right = 938.0
-offset_bottom = 487.0
+offset_left = 1216.0
+offset_top = 640.0
+offset_right = 1274.0
+offset_bottom = 671.0
+focus_mode = 0
 text = "магия"
 
 [node name="play" type="Button" parent="."]
 layout_mode = 0
-offset_left = 496.0
-offset_top = 240.0
-offset_right = 666.0
-offset_bottom = 357.0
+offset_left = 816.0
+offset_top = 328.0
+offset_right = 986.0
+offset_bottom = 445.0
+focus_mode = 0
 text = "ИГРАТЬ"
 
 [node name="bow" type="Button" parent="."]
 layout_mode = 0
-offset_left = 240.0
-offset_top = 456.0
-offset_right = 365.0
-offset_bottom = 487.0
+offset_left = 320.0
+offset_top = 640.0
+offset_right = 445.0
+offset_bottom = 671.0
+focus_mode = 0
 text = "дальняя атака"
+
+[node name="howto" type="Button" parent="."]
+top_level = true
+layout_mode = 0
+offset_left = 848.0
+offset_top = 568.0
+offset_right = 943.0
+offset_bottom = 599.0
+focus_mode = 0
+text = "как играть"
 
 [node name="quit" type="Button" parent="."]
 visible = false
 top_level = true
 layout_mode = 0
-offset_left = 1081.0
-offset_top = 22.0
-offset_right = 1120.0
-offset_bottom = 53.0
+offset_left = 1714.0
+offset_top = 14.0
+offset_right = 1775.0
+offset_bottom = 45.0
+focus_mode = 0
 text = "выйти"
-
-[node name="howto" type="Button" parent="."]
-top_level = true
-layout_mode = 0
-offset_left = 528.0
-offset_top = 456.0
-offset_right = 623.0
-offset_bottom = 487.0
-text = "как играть"
 
 [node name="lvl" type="Label" parent="."]
 layout_mode = 0
 offset_left = 528.0
 offset_top = 16.0
-offset_right = 629.0
+offset_right = 1264.0
 offset_bottom = 85.0
 theme_override_font_sizes/font_size = 50
 text = "0"
@@ -89,5 +165,5 @@ script = ExtResource("2_0xm2m")
 [connection signal="button_down" from="magic" to="." method="_on_magic_button_down"]
 [connection signal="button_down" from="play" to="." method="_on_play_button_down"]
 [connection signal="button_down" from="bow" to="." method="_on_bow_button_down"]
-[connection signal="button_down" from="quit" to="." method="_on_quit_button_down"]
 [connection signal="button_down" from="howto" to="." method="_on_howto_button_down"]
+[connection signal="button_down" from="quit" to="." method="_on_quit_button_down"]

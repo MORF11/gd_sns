@@ -10,6 +10,7 @@ var spray
 var turn
 var leng
 var q
+var cond
 
 func spawn(pos):
 	ins = ap.instantiate()
@@ -28,9 +29,15 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	c += 1
-	if (c % 30 if hits < 100 else c % 20) != 0:
+	if hits < 100:
+		cond =  c % 40 != 0
+	elif hits < 200:
+		cond = c % 30 != 0
+	else:
+		cond = c % 20 != 0
+	if cond:
 		return
-	if randi()%15 != 0:
+	if randi()%14 != 0:
 		spawn(randi()%88)
 	else:
 		spray = randi()%88

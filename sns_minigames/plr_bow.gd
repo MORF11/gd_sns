@@ -6,9 +6,9 @@ var ar_ins
 var string = 0
 var is_pr = false
 var tar = preload("res://target.tscn")
-var tr
+var trt
 var fr = 0
-var power = 2000
+var power = 3000
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.is_pressed():
@@ -39,14 +39,14 @@ func _process(_delta: float) -> void:
 		$Node2D/staff.modulate.b = 1
 		$Node2D/staff.modulate.g = 1
 	fr += 1
-	if fr % 40 == 0:
-		tr = tar.instantiate()
-		tr.position = Vector2(randi()%700+300,randi()%400+100)
+	if fr % 70 == 0:
+		trt = tar.instantiate()
+		trt.position = Vector2(randi()%1000+500,randi()%600+100)
 		if score > 100:
-			tr.time = 2.1
+			trt.time = 5.5
 		elif score > 200:
-			tr.time = 1.8
+			trt.time = 4.5
 		elif score > 300:
-			tr.time = 1.5
-		tr.get_child(1).connect('timeout',loose)
-		$"targets".add_child(tr)
+			trt.time = 4
+		trt.get_child(1).connect('timeout',loose)
+		$"targets".add_child(trt)
