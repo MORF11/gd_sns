@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cr88suev44554"]
+[gd_scene load_steps=25 format=3 uid="uid://cr88suev44554"]
 
 [ext_resource type="PackedScene" uid="uid://vn2erbrxcr04" path="res://char.tscn" id="1_qtnqo"]
 [ext_resource type="Texture2D" uid="uid://beh3i5fdpi3dn" path="res://assets/bgs/bg12.png" id="3_anjje"]
@@ -10,24 +10,41 @@
 [ext_resource type="Texture2D" uid="uid://bv1h5lso2lqdi" path="res://assets/bgs/bg15.png" id="6_y3uln"]
 
 [sub_resource type="Curve" id="Curve_pcwf8"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.32584274), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.4710922, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_6jvfb"]
 curve = SubResource("Curve_pcwf8")
 
+[sub_resource type="Curve" id="Curve_qeq1m"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 71.24567), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_khrby"]
+curve = SubResource("Curve_qeq1m")
+
+[sub_resource type="Curve" id="Curve_khrby"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.75029105), -0.32159552, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_anjje"]
+curve = SubResource("Curve_khrby")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pcwf8"]
-lifetime_randomness = 0.04
+lifetime_randomness = 1.0
 emission_shape = 3
 emission_box_extents = Vector3(1400, 0, 1)
 angle_min = -109.99999
 angle_max = 111.000015
+angle_curve = SubResource("CurveTexture_khrby")
 direction = Vector3(0, 1, 0)
-initial_velocity_min = 56.55
-initial_velocity_max = 76.25
+initial_velocity_min = 191.69
+initial_velocity_max = 216.69
 gravity = Vector3(0, 98, 0)
 scale_min = 0.099999994
 scale_max = 0.29999998
+scale_curve = SubResource("CurveTexture_anjje")
 alpha_curve = SubResource("CurveTexture_6jvfb")
 turbulence_influence_min = 0.0
 turbulence_influence_max = 0.020000001
@@ -45,7 +62,7 @@ bg_color = Color(0.32, 0.08319999, 0.08319999, 1)
 bg_color = Color(0.5019608, 0.03137255, 0.03137255, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qtnqo"]
-size = Vector2(3864, 129)
+size = Vector2(6620, 129)
 
 [sub_resource type="Gradient" id="Gradient_pcwf8"]
 offsets = PackedFloat32Array(0.54395604, 1)
@@ -129,10 +146,10 @@ texture = ExtResource("6_y3uln")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="camtar/Camera2D"]
 texture_filter = 1
-position = Vector2(0, -335)
+position = Vector2(0, -468)
 amount = 15
 texture = ExtResource("4_i76yi")
-lifetime = 1.95
+lifetime = 2.9499999999999997
 preprocess = 2.0
 process_material = SubResource("ParticleProcessMaterial_pcwf8")
 
@@ -166,19 +183,35 @@ position = Vector2(352, 224)
 scale = Vector2(0.6, 0.6)
 collision_mask = 4
 
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(7931, 1435)
+collision_layer = 5
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(304, 45.5)
+shape = SubResource("RectangleShape2D_qtnqo")
+
+[node name="Panel" type="Panel" parent="StaticBody2D4"]
+offset_left = -3006.0
+offset_top = -19.0
+offset_right = 3614.0
+offset_bottom = 274.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_plua7")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(415, 480)
 collision_layer = 5
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(304, 45.5)
+position = Vector2(1682, 45.5)
 shape = SubResource("RectangleShape2D_qtnqo")
 
 [node name="Panel" type="Panel" parent="StaticBody2D"]
 offset_left = -1634.0
-offset_top = -23.0
-offset_right = 2235.0
+offset_top = -19.0
+offset_right = 4993.0
 offset_bottom = 274.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_plua7")
 

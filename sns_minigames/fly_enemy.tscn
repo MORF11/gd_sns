@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://bryhndvh1cx3n"]
+
+[ext_resource type="Texture2D" uid="uid://kwablm3khix4" path="res://assets/bee1.png" id="1_tgfrj"]
+[ext_resource type="Texture2D" uid="uid://dseyatwvcs3em" path="res://assets/bee2.png" id="2_vs1k2"]
+[ext_resource type="Texture2D" uid="uid://bo1mfpcminnds" path="res://assets/bee3.png" id="3_fl5rv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h150h"]
+bg_color = Color(0.32156864, 0.08235294, 0.08235294, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6htto"]
+bg_color = Color(0.5019608, 0.03137255, 0.03137255, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_go8ah"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_tgfrj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_vs1k2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fl5rv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -66.5
+offset_top = -188.0
+offset_right = 66.5
+offset_bottom = -161.0
+theme_override_styles/background = SubResource("StyleBoxFlat_h150h")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6htto")
+value = 100.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_go8ah")
+frame = 2
+frame_progress = 0.051832225

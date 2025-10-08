@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var ml_dmg = 10
 @export var hp = 100
 @export var ult_regen = 30
-@export var rg_dmg = 0
+@export var rg_dmg = 10
 
 @onready var a = $AnimationPlayer
 @onready var pgult = $"../camtar/Camera2D/ult"
@@ -13,6 +13,7 @@ var side = 'r'
 var unbreakable = ["atack","range","ult","damage"]
 var ar = preload("res://arrow.tscn")
 var ins
+var atck_fl = false
 
 func dmgd(dmg,pos):
 	hp -= dmg
@@ -21,7 +22,7 @@ func dmgd(dmg,pos):
 	pghp.value = hp
 	velocity.y -= 1000
 	velocity.x += 1000 if pos.x < position.x else -1000
-	if hp <= 0:
+	if hp <= 0 and $".".modulate.a == 1:
 		$CPUParticles2D.emitting = true
 		a.play("fall")
 		$".".modulate.a = 0.66
@@ -67,6 +68,7 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("atack"):
 		if a.current_animation not in unbreakable:
+			atck_fl = true
 			a.play("atack")
 	elif Input.is_action_pressed("range"):
 		if not a.current_animation == "range":
@@ -80,8 +82,7 @@ func _physics_process(delta):
 	elif Input.is_action_pressed("ult") and pgult.value == 100:
 		a.play('ult')
 		pgult.value = 0
-		@warning_ignore("integer_division")
-		for i in range(int(ult_regen)):
+		for i in range(ult_regen):
 			if hp + 1 <= 100:
 				hp += 1
 				pghp.value = hp
@@ -99,6 +100,12 @@ func _physics_process(delta):
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is CharacterBody2D:
+	if body is CharacterBody2D and atck_fl:
 		body.dmgd(ml_dmg,position)
 		pgult.value += 10
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name != 'RESET':
+		a.play("RESET")
+	atck_fl = false
