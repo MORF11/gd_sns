@@ -6,12 +6,24 @@ var side = -1 if randi()%2 == 1 else 1
 
 func dmgd(dmg,pos):
 	hp -= dmg
-	$AnimatedSprite2D.modulate.r = 10
+	if hp > 0:
+		$AnimatedSprite2D.modulate.r = 10
+		await get_tree().create_timer(0.1).timeout
+		$AnimatedSprite2D.modulate.r = 1
 	$ProgressBar.value = hp
 	velocity.y -= 100
 	velocity.x += 100 if pos.x < position.x else -100
-	await get_tree().create_timer(0.1).timeout
-	$AnimatedSprite2D.modulate.r = 1
+	if hp <= 0:
+		velocity.y -= 500
+		velocity.x += 500 if pos.x < position.x else -500
+		$AnimatedSprite2D.modulate.r = 5
+		$CPUParticles2D.emitting = true
+		$".".modulate.a = 0.66
+		await get_tree().create_timer(0.1).timeout
+		$".".modulate.a = 0.33
+		await get_tree().create_timer(0.1).timeout
+		$".".modulate.a = 0
+		queue_free()
 
 
 func _ready() -> void:

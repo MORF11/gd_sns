@@ -15,7 +15,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		body.del(0.1)
 		$"..".score += 1
 		velocity *= 0.7
-		$"..".get_child(7).add()
+		$"..".get_child(8).add()
 	elif body is CharacterBody2D and body.name != 'plr':
 		body.dmgd(dmg,position)
 	elif body is StaticBody2D:

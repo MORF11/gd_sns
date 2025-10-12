@@ -4,11 +4,10 @@ var ap = preload("res://apple.tscn")
 @export var score = 0
 var fr = 0
 var ins
-var points = [Vector2(500,0),
-Vector2(-500,0),
-Vector2(0,-500)]
-var tmng = 0
-var cd = 0
+var points = [Vector2(800,0),
+Vector2(-800,0),
+Vector2(0,-800)]
+var cd = false
 var sp_fl = false
 
 func _ready() -> void:
@@ -38,12 +37,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _process(_delta: float) -> void:
-	if tmng > 5:
-		$Area2D.visible = false
-		$Area2D/CollisionShape2D.disabled = true
-	tmng += 1
 	fr += 1
-	cd -= 1
 	if (fr % 50 if score < 100 else fr % 30) != 0:
 		return
 	if randi() % 3 == 0:
@@ -53,28 +47,22 @@ func _process(_delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("left") and cd <= 0:
-		$Area2D.global_rotation = deg_to_rad(180)
-		$Area2D.position = Vector2(-142,0)
-		$Area2D.visible = true
-		$Area2D/CollisionShape2D.disabled = false
+	if event.is_action_pressed("left") and not cd:
+		$"../AnimationPlayer".play("left")
+		cd = true
 		$"../Body".flip_h = true
 		$"../Head".flip_h = true
-		tmng = 0
-		cd = 20
-	elif event.is_action_pressed("right") and cd <= 0:
-		$Area2D.global_rotation = 0
-		$Area2D.position = Vector2(142,0)
-		$Area2D.visible = true
-		$Area2D/CollisionShape2D.disabled = false
+	elif event.is_action_pressed("right") and not cd:
+		$"../AnimationPlayer".play("right")
+		cd = true
 		$"../Body".flip_h = false
 		$"../Head".flip_h = false
-		tmng = 0
-		cd = 20
-	elif event.is_action_pressed("up") and cd <= 0:
-		$Area2D.global_rotation = deg_to_rad(90)
-		$Area2D.position = Vector2(0,-142)
-		$Area2D.visible = true
-		$Area2D/CollisionShape2D.disabled = false
-		tmng = 0
-		cd = 20
+	elif event.is_action_pressed("up") and not cd:
+		$"../AnimationPlayer".play("RESET")
+		cd = true
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name != 'idle':
+		cd = false
+		$"../AnimationPlayer".play("idle")

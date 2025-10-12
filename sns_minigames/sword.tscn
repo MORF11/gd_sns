@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://gasm3b8s7ihn"]
+[gd_scene load_steps=28 format=3 uid="uid://gasm3b8s7ihn"]
 
 [ext_resource type="Script" uid="uid://6dkii5enkssx" path="res://score_sw.gd" id="1_r76a6"]
 [ext_resource type="Texture2D" uid="uid://uqvx6nyxqhwr" path="res://assets/bgs/bg11.png" id="1_u2t1x"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b7fhjxu4o7ixa" path="res://assets/body.png" id="6_1o1wo"]
 [ext_resource type="Texture2D" uid="uid://dqwrf244403r8" path="res://assets/hand.png" id="7_k4l2t"]
 [ext_resource type="Texture2D" uid="uid://c0n8tfyb5rt70" path="res://assets/foot.png" id="8_12tba"]
+[ext_resource type="Texture2D" uid="uid://5owxbrosnohh" path="res://assets/sword.png" id="9_v0wwq"]
 
 [sub_resource type="Curve" id="Curve_hqx57"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.32584274), 0.0, 0.0, 0, 0]
@@ -36,16 +37,181 @@ alpha_curve = SubResource("CurveTexture_dllgs")
 turbulence_influence_min = 0.0
 turbulence_influence_max = 0.020000001
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_v4ynp"]
-radius = 68.0294
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u2t1x"]
+size = Vector2(75, 150)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_83fnj"]
+size = Vector2(27.578072, 20)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rx5id"]
 bg_color = Color(0.32578987, 0.32578987, 0.32578987, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4ynp"]
 bg_color = Color(11.708403, 11.708403, 11.708403, 1)
+
+[sub_resource type="Animation" id="Animation_v0wwq"]
+resource_name = "right"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("plr/pivot/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0017890666, 0.09482052, 0.22900052),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(76, -15), Vector2(122, 29), Vector2(127, 32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("plr/pivot/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0035781332, 0.09303146, 0.22900052),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.7417649320975901, 0.0, 0.15707963267948966]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("plr/pivot:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.01),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5nb6p"]
+resource_name = "idle"
+length = 0.25
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("plr/pivot/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-1.1641532e-10, 0.24943493),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(87, 72), Vector2(87, 78)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("plr/pivot/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.24868026),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.5672320068981571, 0.5323254218582705]
+}
+
+[sub_resource type="Animation" id="Animation_tsoji"]
+resource_name = "up_left"
+
+[sub_resource type="Animation" id="Animation_hqx57"]
+resource_name = "up_right"
+
+[sub_resource type="Animation" id="Animation_dllgs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("plr/pivot/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(87, 29)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("plr/pivot/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("plr/pivot:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_evhoq"]
+resource_name = "left"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("plr/pivot/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0017890666, 0.09482052, 0.22900052),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(76, -15), Vector2(122, 29), Vector2(127, 32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("plr/pivot/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0035781332, 0.09303146, 0.22900052),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.7330382858376184, 0.0, 0.15707963267948966]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("plr/pivot:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.01),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qeuqu"]
+_data = {
+&"RESET": SubResource("Animation_dllgs"),
+&"idle": SubResource("Animation_5nb6p"),
+&"left": SubResource("Animation_evhoq"),
+&"right": SubResource("Animation_v0wwq"),
+&"up_left": SubResource("Animation_tsoji"),
+&"up_right": SubResource("Animation_hqx57")
+}
 
 [node name="Node2D" type="Node2D"]
 
@@ -103,19 +269,34 @@ position = Vector2(954, 686)
 script = ExtResource("2_dwvek")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="plr"]
-shape = SubResource("CircleShape2D_v4ynp")
+position = Vector2(-6.5, 12)
+shape = SubResource("RectangleShape2D_u2t1x")
 
-[node name="Area2D" type="Area2D" parent="plr"]
-visible = false
-position = Vector2(142, 0)
+[node name="pivot" type="Node2D" parent="plr"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="plr/Area2D"]
-scale = Vector2(7, 2)
+[node name="Sprite2D" type="Sprite2D" parent="plr/pivot"]
+position = Vector2(87, 29)
+texture = ExtResource("7_k4l2t")
+
+[node name="Sword" type="Sprite2D" parent="plr/pivot/Sprite2D"]
+show_behind_parent = true
+position = Vector2(76, -37)
+rotation = 0.56199604
+scale = Vector2(2, 2)
+texture = ExtResource("9_v0wwq")
+
+[node name="Area2D" type="Area2D" parent="plr/pivot/Sprite2D"]
+position = Vector2(55, -29)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plr/pivot/Sprite2D/Area2D"]
+position = Vector2(56.21985, -14.284851)
+rotation = -0.2565634
+scale = Vector2(6.9999995, 1.9999998)
 shape = SubResource("RectangleShape2D_83fnj")
 
-[node name="Sprite2D" type="Sprite2D" parent="plr/Area2D"]
-position = Vector2(6.0000305, 3.0000043)
-scale = Vector2(3.1199996, 0.8300001)
+[node name="Sprite2D2" type="Sprite2D" parent="plr/pivot/Sprite2D"]
+show_behind_parent = true
+position = Vector2(-18, -15)
 texture = ExtResource("7_k4l2t")
 
 [node name="lvl" type="ProgressBar" parent="."]
@@ -150,5 +331,12 @@ position = Vector2(980, 793)
 scale = Vector2(1.01, 1)
 texture = ExtResource("8_12tba")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qeuqu")
+}
+autoplay = "idle"
+
 [connection signal="body_entered" from="plr" to="plr" method="_on_body_entered"]
-[connection signal="body_entered" from="plr/Area2D" to="plr" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="plr/pivot/Sprite2D/Area2D" to="plr" method="_on_area_2d_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="plr" method="_on_animation_player_animation_finished"]

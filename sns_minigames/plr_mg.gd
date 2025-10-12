@@ -23,15 +23,15 @@ func loose():
 func _process(delta: float) -> void:
 	do_movement(delta)
 	fr += 1
-	if fr % 40 == 0:
+	if fr % 70 == 0:
 		trg = tar.instantiate()
-		trg.position = Vector2(randi()%700+300,randi()%400+100)
+		trg.position = Vector2(randi()%1000+500,randi()%600+100)
 		if score > 100:
-			trg.time = 2.1
+			trg.time = 3.5
 		elif score > 200:
-			trg.time = 1.8
+			trg.time = 3
 		elif score > 300:
-			trg.time = 1.5
+			trg.time = 2.7
 		trg.get_child(1).connect('timeout',loose)
 		$"../targets".add_child(trg)
 

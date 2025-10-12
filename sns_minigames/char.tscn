@@ -1001,3 +1001,4 @@ color_ramp = SubResource("Gradient_4phwq")
 color_initial_ramp = SubResource("Gradient_qxri4")
 
 [connection signal="body_entered" from="pics/Arm/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 window/size/viewport_width=1800
 window/size/viewport_height=900
 
+[editor]
+
+movie_writer/movie_file="C:/Users/Student05/Documents/Godot/gd_sns/sns_minigames/clip.avi"
+
 [input]
 
 left={
