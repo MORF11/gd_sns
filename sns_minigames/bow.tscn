@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://itojpg6nq204"]
+[gd_scene load_steps=24 format=3 uid="uid://itojpg6nq204"]
 
 [ext_resource type="Script" uid="uid://38ekk2owvakp" path="res://plr_bow.gd" id="1_cx05r"]
 [ext_resource type="Texture2D" uid="uid://uqvx6nyxqhwr" path="res://assets/bgs/bg11.png" id="2_tcx5s"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://xv2k5tk8nfo5" path="res://bow.gd" id="8_tcx5s"]
 [ext_resource type="Texture2D" uid="uid://hsvnq4as0jpp" path="res://assets/bow.png" id="9_ft4oj"]
 [ext_resource type="Texture2D" uid="uid://c0n8tfyb5rt70" path="res://assets/foot.png" id="9_swcsf"]
+[ext_resource type="Texture2D" uid="uid://dw0tixtacfdos" path="res://assets/spritesheet (1).png" id="10_ft4oj"]
 
 [sub_resource type="Curve" id="Curve_hsb0k"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.32584274), 0.0, 0.0, 0, 0]
@@ -37,6 +38,28 @@ scale_max = 0.29999998
 alpha_curve = SubResource("CurveTexture_fjapx")
 turbulence_influence_min = 0.0
 turbulence_influence_max = 0.020000001
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acd0x"]
+atlas = ExtResource("10_ft4oj")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6a6ax"]
+atlas = ExtResource("10_ft4oj")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8slvx"]
+animations = [{
+"frames": [{
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_acd0x")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_6a6ax")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qlpkw"]
 bg_color = Color(0.32578987, 0.32578987, 0.32578987, 1)
@@ -110,6 +133,12 @@ texture = ExtResource("9_ft4oj")
 position = Vector2(191.99997, -40)
 scale = Vector2(2.7826087, 1)
 texture = ExtResource("3_qlpkw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D/Arm2"]
+show_behind_parent = true
+position = Vector2(36, -15)
+rotation = -0.18151425
+sprite_frames = SubResource("SpriteFrames_8slvx")
 
 [node name="score" type="Label" parent="."]
 offset_left = 866.0

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-var damage = 10
-var hp = 100
+@export var damage = 10
+@export var hp = 100
 var side = -1 if randi()%2 == 1 else 1
 
 func dmgd(dmg,pos):
@@ -24,10 +24,6 @@ func dmgd(dmg,pos):
 		await get_tree().create_timer(0.1).timeout
 		$".".modulate.a = 0
 		queue_free()
-
-
-func _ready() -> void:
-	$AnimatedSprite2D.play("default")
 
 
 func _physics_process(delta: float) -> void:

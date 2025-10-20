@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cr88suev44554"]
+[gd_scene load_steps=26 format=3 uid="uid://cr88suev44554"]
 
 [ext_resource type="PackedScene" uid="uid://vn2erbrxcr04" path="res://char.tscn" id="1_qtnqo"]
 [ext_resource type="Texture2D" uid="uid://beh3i5fdpi3dn" path="res://assets/bgs/bg12.png" id="3_anjje"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://by0gei56bex30" path="res://assets/bgs/bg14.png" id="5_na3rd"]
 [ext_resource type="PackedScene" uid="uid://dk57ijnuluowh" path="res://base_enemy.tscn" id="5_pcwf8"]
 [ext_resource type="Texture2D" uid="uid://bv1h5lso2lqdi" path="res://assets/bgs/bg15.png" id="6_y3uln"]
+[ext_resource type="PackedScene" uid="uid://bryhndvh1cx3n" path="res://fly_enemy.tscn" id="9_khrby"]
 
 [sub_resource type="Curve" id="Curve_pcwf8"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.4710922, 0.0, 0, 0]
@@ -154,6 +155,7 @@ preprocess = 2.0
 process_material = SubResource("ParticleProcessMaterial_pcwf8")
 
 [node name="Button" type="Button" parent="camtar/Camera2D"]
+z_index = 1
 offset_left = 791.0
 offset_top = -416.0
 offset_right = 852.0
@@ -162,6 +164,7 @@ focus_mode = 0
 text = "выйти"
 
 [node name="ult" type="ProgressBar" parent="camtar/Camera2D"]
+z_index = 1
 offset_left = -874.0
 offset_top = -430.0
 offset_right = -587.0
@@ -170,6 +173,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_xek70")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qeq1m")
 
 [node name="hp" type="ProgressBar" parent="camtar/Camera2D"]
+z_index = 1
 offset_left = -874.0
 offset_top = -392.0
 offset_right = -587.0
@@ -236,5 +240,8 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
 shape = SubResource("RectangleShape2D_pcwf8")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("9_khrby")]
+position = Vector2(1715, -133)
 
 [connection signal="button_down" from="camtar/Camera2D/Button" to="camtar" method="_on_button_button_down"]

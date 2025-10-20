@@ -85,10 +85,12 @@ offset_bottom = -68.0
 theme_override_styles/background = SubResource("StyleBoxFlat_nxij1")
 theme_override_styles/fill = SubResource("StyleBoxFlat_8vink")
 value = 100.0
+show_percentage = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_t4uyu")
+autoplay = "default"
 frame_progress = 0.16121422
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

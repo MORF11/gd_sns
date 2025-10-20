@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bryhndvh1cx3n"]
+[gd_scene load_steps=16 format=3 uid="uid://bryhndvh1cx3n"]
 
+[ext_resource type="Script" uid="uid://oe8xgbyuk86r" path="res://fly_enemy.gd" id="1_fl5rv"]
 [ext_resource type="Texture2D" uid="uid://kwablm3khix4" path="res://assets/bee1.png" id="1_tgfrj"]
 [ext_resource type="Texture2D" uid="uid://dseyatwvcs3em" path="res://assets/bee2.png" id="2_vs1k2"]
 [ext_resource type="Texture2D" uid="uid://bo1mfpcminnds" path="res://assets/bee3.png" id="3_fl5rv"]
+[ext_resource type="Texture2D" uid="uid://dqwrf244403r8" path="res://assets/hand.png" id="5_h150h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h150h"]
 bg_color = Color(0.32156864, 0.08235294, 0.08235294, 1)
@@ -27,7 +29,84 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6htto"]
+size = Vector2(154, 282)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_go8ah"]
+size = Vector2(1056.5, 1064)
+
+[sub_resource type="Gradient" id="Gradient_h53oq"]
+colors = PackedColorArray(1, 1, 1, 0.8745098, 0.8776157, 0.8776158, 0.8776157, 0.654902)
+
+[sub_resource type="Gradient" id="Gradient_aw51k"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_h150h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D/CollisionShape2D:scale:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:shoot_fl")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_fl5rv"]
+resource_name = "col_change"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D/CollisionShape2D:scale:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 0.8, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:shoot_fl")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.9666667, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6htto"]
+_data = {
+&"RESET": SubResource("Animation_h150h"),
+&"col_change": SubResource("Animation_fl5rv")
+}
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_fl5rv")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 offset_left = -66.5
@@ -37,9 +116,52 @@ offset_bottom = -161.0
 theme_override_styles/background = SubResource("StyleBoxFlat_h150h")
 theme_override_styles/fill = SubResource("StyleBoxFlat_6htto")
 value = 100.0
+show_percentage = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_go8ah")
+autoplay = "default"
 frame = 2
 frame_progress = 0.051832225
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -7)
+shape = SubResource("RectangleShape2D_6htto")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-0.5, 0)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2.5, 26)
+shape = SubResource("RectangleShape2D_go8ah")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 23
+texture = ExtResource("5_h150h")
+explosiveness = 1.0
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 128.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 187.35
+initial_velocity_max = 187.35
+linear_accel_min = 2.0
+linear_accel_max = 2.0
+scale_amount_min = 0.3
+scale_amount_max = 0.3
+color_ramp = SubResource("Gradient_h53oq")
+color_initial_ramp = SubResource("Gradient_aw51k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6htto")
+}
+autoplay = "col_change"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

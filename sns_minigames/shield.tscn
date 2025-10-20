@@ -42,7 +42,7 @@ turbulence_influence_max = 0.020000001
 radius = 80.0062
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
-size = Vector2(63, 121)
+size = Vector2(75, 140)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdxae"]
 bg_color = Color(0.32578987, 0.32578987, 0.32578987, 1)
@@ -132,7 +132,7 @@ script = ExtResource("4_xc41h")
 position = Vector2(115, -10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="plr/Node2D/shield"]
-position = Vector2(-0.5, -0.5)
+position = Vector2(5.5, -2)
 shape = SubResource("RectangleShape2D_0xm2m")
 
 [node name="Node2D" type="Node2D" parent="plr/Node2D/shield"]
@@ -141,14 +141,15 @@ shape = SubResource("RectangleShape2D_0xm2m")
 position = Vector2(-33, 41)
 texture = ExtResource("7_vivl0")
 
+[node name="Shield" type="Sprite2D" parent="plr/Node2D/shield/Node2D"]
+position = Vector2(2.002716e-05, -2.0000048)
+scale = Vector2(0.8523437, 1.1109375)
+skew = 0.10471976
+texture = ExtResource("8_1e71e")
+
 [node name="Arm2" type="Sprite2D" parent="plr/Node2D/shield/Node2D"]
 position = Vector2(-44, -14)
 texture = ExtResource("7_vivl0")
-
-[node name="Shield" type="Sprite2D" parent="plr/Node2D/shield/Node2D"]
-position = Vector2(-11, 2)
-scale = Vector2(1.3, 1.3)
-texture = ExtResource("8_1e71e")
 
 [node name="rot" type="Node2D" parent="."]
 
