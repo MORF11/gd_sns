@@ -17,11 +17,13 @@ var atck_fl = false
 
 func dmgd(dmg,pos):
 	hp -= dmg
+	pghp.value = hp
+	if a.current_animation != 'damage':
+		if velocity.y > -1000:
+			velocity.y -= 1000
+		velocity.x += 1000 if pos.x < position.x else -1000
 	if hp > 0:
 		a.play("damage")
-	pghp.value = hp
-	velocity.y -= 1000
-	velocity.x += 1000 if pos.x < position.x else -1000
 	if hp <= 0 and $".".modulate.a == 1:
 		$CPUParticles2D.emitting = true
 		a.play("fall")
@@ -35,13 +37,13 @@ func dmgd(dmg,pos):
 		queue_free()
 
 
-func _ready() -> void:
-	a.play("idle")
-
-
 func _physics_process(delta):
 	if hp <= 0:
 		return
+	elif position.y > 4000:
+		dmgd(5,position)
+		print(position)
+		
 	if not is_on_floor():
 		velocity.y += 9.8 * delta * 300
 		
@@ -105,7 +107,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		pgult.value += 10
 
 
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name != 'RESET':
-		a.play("RESET")
+func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	atck_fl = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cr88suev44554"]
+[gd_scene load_steps=26 format=3 uid="uid://cr88suev44554"]
 
 [ext_resource type="PackedScene" uid="uid://vn2erbrxcr04" path="res://char.tscn" id="1_qtnqo"]
 [ext_resource type="Texture2D" uid="uid://beh3i5fdpi3dn" path="res://assets/bgs/bg12.png" id="3_anjje"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://by0gei56bex30" path="res://assets/bgs/bg14.png" id="5_na3rd"]
 [ext_resource type="PackedScene" uid="uid://dk57ijnuluowh" path="res://base_enemy.tscn" id="5_pcwf8"]
 [ext_resource type="Texture2D" uid="uid://bv1h5lso2lqdi" path="res://assets/bgs/bg15.png" id="6_y3uln"]
+[ext_resource type="PackedScene" uid="uid://bryhndvh1cx3n" path="res://fly_enemy.tscn" id="9_khrby"]
 
 [sub_resource type="Curve" id="Curve_pcwf8"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.4710922, 0.0, 0, 0]
@@ -140,13 +141,14 @@ repeat_times = 31
 
 [node name="Bg15" type="Sprite2D" parent="camtar/Camera2D/bg/Parallax2D5"]
 modulate = Color(0.9166399, 0.91663986, 0.9166398, 1)
-position = Vector2(-2.0699925, -227.00006)
-scale = Vector2(18.250002, 16.34)
+position = Vector2(-135.06998, -346.50006)
+scale = Vector2(18.250002, 19.37)
 texture = ExtResource("6_y3uln")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="camtar/Camera2D"]
 texture_filter = 1
 position = Vector2(0, -468)
+emitting = false
 amount = 15
 texture = ExtResource("4_i76yi")
 lifetime = 2.9499999999999997
@@ -154,6 +156,7 @@ preprocess = 2.0
 process_material = SubResource("ParticleProcessMaterial_pcwf8")
 
 [node name="Button" type="Button" parent="camtar/Camera2D"]
+z_index = 1
 offset_left = 791.0
 offset_top = -416.0
 offset_right = 852.0
@@ -162,6 +165,7 @@ focus_mode = 0
 text = "выйти"
 
 [node name="ult" type="ProgressBar" parent="camtar/Camera2D"]
+z_index = 1
 offset_left = -874.0
 offset_top = -430.0
 offset_right = -587.0
@@ -170,6 +174,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_xek70")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qeq1m")
 
 [node name="hp" type="ProgressBar" parent="camtar/Camera2D"]
+z_index = 1
 offset_left = -874.0
 offset_top = -392.0
 offset_right = -587.0
@@ -184,6 +189,7 @@ scale = Vector2(0.6, 0.6)
 collision_mask = 4
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(7931, 1435)
 collision_layer = 5
 collision_mask = 3
@@ -215,6 +221,57 @@ offset_right = 4993.0
 offset_bottom = 274.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_plua7")
 
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2(-2362, 516)
+scale = Vector2(0.1, 1)
+collision_layer = 5
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2(1682, 45.5)
+shape = SubResource("RectangleShape2D_qtnqo")
+
+[node name="Panel" type="Panel" parent="StaticBody2D5"]
+offset_left = -1634.0
+offset_top = -19.0
+offset_right = 4993.0
+offset_bottom = 274.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_plua7")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+position = Vector2(-3681, 506)
+scale = Vector2(0.1, 1)
+collision_layer = 5
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
+position = Vector2(1682, 45.5)
+shape = SubResource("RectangleShape2D_qtnqo")
+
+[node name="Panel" type="Panel" parent="StaticBody2D6"]
+offset_left = -1634.0
+offset_top = -19.0
+offset_right = 4993.0
+offset_bottom = 274.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_plua7")
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="."]
+position = Vector2(-4771, 506)
+scale = Vector2(0.1, 1)
+collision_layer = 5
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7"]
+position = Vector2(1682, 45.5)
+shape = SubResource("RectangleShape2D_qtnqo")
+
+[node name="Panel" type="Panel" parent="StaticBody2D7"]
+offset_left = -1634.0
+offset_top = -19.0
+offset_right = 4993.0
+offset_bottom = 274.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_plua7")
+
 [node name="CharacterBody2D2" parent="." instance=ExtResource("5_pcwf8")]
 position = Vector2(611, 378)
 
@@ -236,5 +293,8 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
 shape = SubResource("RectangleShape2D_pcwf8")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("9_khrby")]
+position = Vector2(-800, -109)
 
 [connection signal="button_down" from="camtar/Camera2D/Button" to="camtar" method="_on_button_button_down"]

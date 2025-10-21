@@ -2,26 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<<< HEAD:sns_minigames/assets/bgs/bg11.png.import
 uid="uid://uqvx6nyxqhwr"
 path="res://.godot/imported/bg11.png-425545a3090f421c7ef16945ff9c8957.ctex"
-========
-uid="uid://kwablm3khix4"
-path="res://.godot/imported/bee1.png-a794d024810d175d8bf0ab0ae3a450ff.ctex"
->>>>>>>> f7edbd7527380601e1b1b87789f34445787e50db:sns_minigames/assets/bee1.png.import
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<<< HEAD:sns_minigames/assets/bgs/bg11.png.import
 source_file="res://assets/bgs/bg11.png"
 dest_files=["res://.godot/imported/bg11.png-425545a3090f421c7ef16945ff9c8957.ctex"]
-========
-source_file="res://assets/bee1.png"
-dest_files=["res://.godot/imported/bee1.png-a794d024810d175d8bf0ab0ae3a450ff.ctex"]
->>>>>>>> f7edbd7527380601e1b1b87789f34445787e50db:sns_minigames/assets/bee1.png.import
 
 [params]
 
