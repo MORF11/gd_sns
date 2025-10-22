@@ -28,6 +28,6 @@ func _input(event: InputEvent) -> void:
 
 
 func _draw() -> void:
-	draw_line(Vector2(230,-200), Vector2(300-(string*7),-75) , Color.BLACK, 4)
-	draw_line(Vector2(300-(string*7),-75), Vector2(370,50) , Color.BLACK, 4)
-	$Arm2.position = Vector2(300-(string*7),-75)
+	draw_line(Vector2(230,-200), Vector2(300-(string*10),-50) , Color.BLACK, 4)
+	draw_line(Vector2(300-(string*10),-50), Vector2(370,50) , Color.BLACK, 4)
+	$Arm2.position = Vector2(300-(string*10),-50)

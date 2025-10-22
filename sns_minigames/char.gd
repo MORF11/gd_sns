@@ -19,7 +19,8 @@ func dmgd(dmg,pos):
 	hp -= dmg
 	pghp.value = hp
 	if a.current_animation != 'damage':
-		velocity.y -= 1000
+		if velocity.y > -1000:
+			velocity.y -= 1000
 		velocity.x += 1000 if pos.x < position.x else -1000
 	if hp > 0:
 		a.play("damage")
@@ -36,13 +37,13 @@ func dmgd(dmg,pos):
 		queue_free()
 
 
-func _ready() -> void:
-	a.play("idle")
-
-
 func _physics_process(delta):
 	if hp <= 0:
 		return
+	elif position.y > 4000:
+		dmgd(5,position)
+		print(position)
+		
 	if not is_on_floor():
 		velocity.y += 9.8 * delta * 300
 		

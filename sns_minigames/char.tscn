@@ -911,7 +911,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.13333334, 0.3, 0.43333334, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-91, 76), Vector2(-61, 91), Vector2(26.70279, 110.91891), Vector2(52, 89), Vector2(-91, 76)]
+"values": [Vector2(-91, 76), Vector2(-61, 110.919), Vector2(26.70279, 110.91891), Vector2(52, 89), Vector2(-91, 76)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -970,6 +970,7 @@ colors = PackedColorArray(1, 1, 1, 0.8745098, 0.8776157, 0.8776158, 0.8776157, 0
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
 [node name="plr" type="CharacterBody2D"]
+collision_mask = 7
 script = ExtResource("1_0e1sv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -1016,6 +1017,7 @@ texture = ExtResource("3_2knqw")
 libraries = {
 &"": SubResource("AnimationLibrary_2knqw")
 }
+autoplay = "idle"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false

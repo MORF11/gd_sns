@@ -46,12 +46,14 @@ func _physics_process(delta: float) -> void:
 		if $"../plr".global_position.x > global_position.x:
 			scale.x *= 1 if side == 'r' else -1
 			side = 'r'
+			$ProgressBar.fill_mode = 0
 		else:
 			scale.x *= 1 if side == 'l' else -1
 			side = 'l'
+			$ProgressBar.fill_mode = 1
 	if is_wl:
 		vlct.y += -130
-		
+	
 	if velocity.y < 300 and is_wl:
 		velocity.y += vlct.y * delta * 100
 	if velocity.x < 300:

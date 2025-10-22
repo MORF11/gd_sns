@@ -174,10 +174,8 @@ scale = Vector2(2.7826087, 1)
 texture = ExtResource("3_h157y")
 
 [node name="staff" type="Sprite2D" parent="Node2D"]
-position = Vector2(294.95663, -58.000023)
-rotation = -0.073303826
-scale = Vector2(2.2878447, 2.953742)
-skew = 0.34732053
+position = Vector2(294.9566, -58)
+scale = Vector2(3, 3)
 texture = ExtResource("11_2ebp0")
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="Node2D/staff"]
@@ -191,7 +189,7 @@ texture = ExtResource("8_uxcsw")
 process_material = SubResource("ParticleProcessMaterial_b36ka")
 
 [node name="Arm2" type="Sprite2D" parent="Node2D"]
-position = Vector2(180.86957, -11)
+position = Vector2(200.34784, -11)
 scale = Vector2(2.7826087, 1)
 texture = ExtResource("3_h157y")
 

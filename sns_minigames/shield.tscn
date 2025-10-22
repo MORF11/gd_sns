@@ -99,12 +99,14 @@ script = ExtResource("1_0vxx4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="plr"]
 shape = SubResource("CircleShape2D_ig7tw")
 
-[node name="Head" type="Sprite2D" parent="plr"]
+[node name="Node2D2" type="Node2D" parent="plr"]
+
+[node name="Head" type="Sprite2D" parent="plr/Node2D2"]
 position = Vector2(16, -96)
 texture = ExtResource("2_gdxae")
 
-[node name="Body" type="Sprite2D" parent="plr"]
-position = Vector2(4, -3.0000093)
+[node name="Body" type="Sprite2D" parent="plr/Node2D2"]
+position = Vector2(4, -3)
 scale = Vector2(1.3, 1.3)
 texture = ExtResource("3_275sl")
 

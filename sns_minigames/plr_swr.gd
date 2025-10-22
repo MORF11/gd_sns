@@ -33,6 +33,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		score += 1
 		body.queue_free()
+		$pivot/Sprite2D/Area2D/GPUParticles2D.restart()
+		$pivot/Sprite2D/Area2D/GPUParticles2D.global_position = body.global_position
 		$"../lvl".add()
 
 
@@ -50,15 +52,14 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("left") and not cd:
 		$"../AnimationPlayer".play("left")
 		cd = true
-		$"../Body".flip_h = true
-		$"../Head".flip_h = true
 	elif event.is_action_pressed("right") and not cd:
 		$"../AnimationPlayer".play("right")
 		cd = true
-		$"../Body".flip_h = false
-		$"../Head".flip_h = false
 	elif event.is_action_pressed("up") and not cd:
-		$"../AnimationPlayer".play("RESET")
+		if $"../Node2D".scale.x == -1:
+			$"../AnimationPlayer".play("up_left")
+		else:
+			$"../AnimationPlayer".play("up_right")
 		cd = true
 
 
