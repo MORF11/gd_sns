@@ -8,19 +8,22 @@ extends CharacterBody2D
 @onready var a = $AnimationPlayer
 @onready var pgult = $"../camtar/Camera2D/ult"
 @onready var pghp = $"../camtar/Camera2D/hp"
+@onready var arws = $"../camtar/Camera2D/arws"
 
 var side = 'r'
 var unbreakable = ["atack","range","ult","damage"]
 var ar = preload("res://arrow.tscn")
 var ins
 var atck_fl = false
+var coyt_cntr = 0
+var jmp_bfr = 0
 
 func dmgd(dmg,pos):
 	hp -= dmg
 	pghp.value = hp
 	if a.current_animation != 'damage':
-		if velocity.y > -1000:
-			velocity.y -= 1000
+		if velocity.y > -700:
+			velocity.y -= 700
 		velocity.x += 1000 if pos.x < position.x else -1000
 	if hp > 0:
 		a.play("damage")
@@ -42,14 +45,29 @@ func _physics_process(delta):
 		return
 	elif position.y > 4000:
 		dmgd(5,position)
-		print(position)
-		
+	velocity.x *= 0.9
+	
 	if not is_on_floor():
-		velocity.y += 9.8 * delta * 300
-		
-	if Input.is_action_pressed("up") and is_on_floor():
+		if jmp_bfr > -1:
+			jmp_bfr -= 1
+		coyt_cntr += 1
+		if coyt_cntr > 7:
+			velocity.y += 9.8 * delta * 300
+	if is_on_floor():
+		coyt_cntr = 0
+		if jmp_bfr >= 0:
+			coyt_cntr = 11 #chtob grav rabotala srazu
+			velocity.y += -1400
+			a.play("fall")
+	
+	if Input.is_action_pressed("up") and coyt_cntr < 7:
+		coyt_cntr = 11 #chtob grav rabotala srazu
 		velocity.y += -1400
 		a.play("fall")
+		if not is_on_floor():
+			jmp_bfr = 5
+	elif Input.is_action_pressed("up"):
+		jmp_bfr = 5
 	
 	if Input.is_action_pressed("right") and abs(velocity.x) < 700:
 		velocity.x += 200
@@ -72,7 +90,7 @@ func _physics_process(delta):
 		if a.current_animation not in unbreakable:
 			atck_fl = true
 			a.play("atack")
-	elif Input.is_action_pressed("range"):
+	elif Input.is_action_pressed("range") and arws.visible:
 		if not a.current_animation == "range":
 			ins = ar.instantiate()
 			ins.dmg = rg_dmg
@@ -97,7 +115,6 @@ func _physics_process(delta):
 			if a.current_animation not in unbreakable:
 				a.play("fall")
 	
-	velocity.x *= 0.9
 	move_and_slide()
 
 
