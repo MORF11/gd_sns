@@ -4,13 +4,6 @@ extends CharacterBody2D
 @export var sp = 25000
 var rot = randi()%10+10
 
-#func die():
-	#$GPUParticles2D.emitting = true
-	#$".".modulate.a = 0
-	#await get_tree().create_timer(1).timeout
-	#queue_free()
-
-
 func _process(delta: float) -> void:
 	if is_spawned:
 		$".".rotation += deg_to_rad(rot)
