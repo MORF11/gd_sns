@@ -40,12 +40,32 @@ func dmgd(dmg,pos):
 		queue_free()
 
 
+func rang(pr_b):
+	if not a.current_animation == "range":
+		ins = ar.instantiate()
+		ins.dmg = rg_dmg
+		ins.scale *= 1 if side == 'r' else -1
+		ins.velocity = Vector2(1500,-150) if side == 'r' else Vector2(-1500,-150)
+		ins.position = $pics/Arm.global_position
+		$"..".add_child(ins)
+		pr_b.value = 0
+	a.play("range")
+
+
 func _physics_process(delta):
 	if hp <= 0:
 		return
 	elif position.y > 4000:
 		dmgd(5,position)
 	velocity.x *= 0.9
+	
+	if arws.visible and a.current_animation != 'range':
+		if arws.get_children()[0].value < 100:
+			arws.get_children()[0].value += 1
+		elif arws.get_children()[1].value < 100:
+			arws.get_children()[1].value += 1
+		elif arws.get_children()[2].value < 100:
+			arws.get_children()[2].value += 1
 	
 	if not is_on_floor():
 		if jmp_bfr > -1:
@@ -91,14 +111,12 @@ func _physics_process(delta):
 			atck_fl = true
 			a.play("atack")
 	elif Input.is_action_pressed("range") and arws.visible:
-		if not a.current_animation == "range":
-			ins = ar.instantiate()
-			ins.dmg = rg_dmg
-			ins.scale *= 1 if side == 'r' else -1
-			ins.velocity = Vector2(1500,-150) if side == 'r' else Vector2(-1500,-150)
-			ins.position = $pics/Arm.global_position
-			$"..".add_child(ins)
-		a.play("range")
+		if arws.get_children()[2].value == 100:
+			rang(arws.get_children()[2])
+		elif arws.get_children()[1].value == 100:
+			rang(arws.get_children()[1])
+		elif arws.get_children()[0].value == 100:
+			rang(arws.get_children()[0])
 	elif Input.is_action_pressed("ult") and pgult.value == 100:
 		a.play('ult')
 		pgult.value = 0
