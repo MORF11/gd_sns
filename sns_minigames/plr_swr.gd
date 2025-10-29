@@ -2,6 +2,7 @@ extends Area2D
 
 var ap = preload("res://apple.tscn")
 @export var score = 0
+@export var max_score = 0
 var fr = 0
 var ins
 var points = [Vector2(800,0),
@@ -11,7 +12,8 @@ var cd = false
 var sp_fl = false
 
 func _ready() -> void:
-	score = 0
+	$"../max_score".text = str(max_score)
+	$"../score".text = "0"
 
 
 func spawn(pos,fl):
@@ -26,12 +28,17 @@ func spawn(pos,fl):
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		score = 0
+		$"../score".text = "0"
 		body.queue_free()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		score += 1
+		$"../score".text = str(score)
+		if score > max_score:
+			max_score = score
+			$"../max_score".text = str(max_score)
 		body.queue_free()
 		$pivot/Sprite2D/Area2D/GPUParticles2D.restart()
 		$pivot/Sprite2D/Area2D/GPUParticles2D.global_position = body.global_position

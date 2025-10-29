@@ -1,6 +1,5 @@
 [gd_scene load_steps=31 format=3 uid="uid://gasm3b8s7ihn"]
 
-[ext_resource type="Script" uid="uid://6dkii5enkssx" path="res://score_sw.gd" id="1_r76a6"]
 [ext_resource type="Texture2D" uid="uid://uqvx6nyxqhwr" path="res://assets/bgs/bg11.png" id="1_u2t1x"]
 [ext_resource type="Script" uid="uid://dxqjkmws4pmd3" path="res://plr_swr.gd" id="2_dwvek"]
 [ext_resource type="Texture2D" uid="uid://beh3i5fdpi3dn" path="res://assets/bgs/bg12.png" id="2_v0wwq"]
@@ -44,7 +43,12 @@ size = Vector2(75, 150)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_83fnj"]
 size = Vector2(27.578072, 20)
 
+[sub_resource type="Curve" id="Curve_5nb6p"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CurveTexture" id="CurveTexture_evhoq"]
+curve = SubResource("Curve_5nb6p")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_evhoq"]
 particle_flag_disable_z = true
@@ -496,7 +500,15 @@ offset_right = 990.0
 offset_bottom = 78.0
 theme_override_font_sizes/font_size = 50
 text = "qwe"
-script = ExtResource("1_r76a6")
+
+[node name="max_score" type="Label" parent="."]
+offset_left = 801.0
+offset_top = 63.0
+offset_right = 902.0
+offset_bottom = 132.0
+theme_override_colors/font_color = Color(1, 0.9013065, 0.60209715, 1)
+theme_override_font_sizes/font_size = 35
+text = "qwe"
 
 [node name="plr" type="Area2D" parent="."]
 position = Vector2(954, 686)

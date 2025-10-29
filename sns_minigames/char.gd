@@ -18,6 +18,16 @@ var atck_fl = false
 var coyt_cntr = 0
 var jmp_bfr = 0
 
+func _ready() -> void:
+	ml_dmg = $"..".stats['ml']
+	rg_dmg = $"..".stats['rn']
+	ult_regen = $"..".stats['ult']
+	hp = $"..".stats['hp']
+	pghp.max_value = hp
+	pghp.value = hp
+	arws.visible = $"..".stats['is_ar']
+
+
 func dmgd(dmg,pos):
 	hp -= dmg
 	pghp.value = hp

@@ -1,11 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://csd5tt78obhcx"]
+[gd_scene load_steps=21 format=3 uid="uid://csd5tt78obhcx"]
 
 [ext_resource type="Script" uid="uid://dcir7nxvx1o6h" path="res://plr_sh.gd" id="1_0vxx4"]
 [ext_resource type="Texture2D" uid="uid://uqvx6nyxqhwr" path="res://assets/bgs/bg11.png" id="1_mvqs3"]
 [ext_resource type="Texture2D" uid="uid://d3vkk8ca7140p" path="res://assets/head.png" id="2_gdxae"]
 [ext_resource type="Texture2D" uid="uid://beh3i5fdpi3dn" path="res://assets/bgs/bg12.png" id="2_n164e"]
 [ext_resource type="Texture2D" uid="uid://b7fhjxu4o7ixa" path="res://assets/body.png" id="3_275sl"]
-[ext_resource type="Script" uid="uid://c33ij17l3illa" path="res://score_sh.gd" id="3_tgr6k"]
 [ext_resource type="Texture2D" uid="uid://7y7ogfqtltob" path="res://assets/bgs/bg13.png" id="3_wspo6"]
 [ext_resource type="Texture2D" uid="uid://c0n8tfyb5rt70" path="res://assets/foot.png" id="4_kjr8o"]
 [ext_resource type="Texture2D" uid="uid://by0gei56bex30" path="res://assets/bgs/bg14.png" id="4_krg2r"]
@@ -125,7 +124,15 @@ offset_right = 58.0
 offset_bottom = -378.0
 theme_override_font_sizes/font_size = 50
 text = "qwe"
-script = ExtResource("3_tgr6k")
+
+[node name="max_score" type="Label" parent="plr"]
+offset_left = -124.0
+offset_top = -391.0
+offset_right = -23.0
+offset_bottom = -322.0
+theme_override_colors/font_color = Color(1, 0.9013065, 0.60209715, 1)
+theme_override_font_sizes/font_size = 35
+text = "qwe"
 
 [node name="Node2D" type="Node2D" parent="plr"]
 script = ExtResource("4_xc41h")

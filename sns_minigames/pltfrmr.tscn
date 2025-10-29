@@ -1,6 +1,7 @@
-[gd_scene load_steps=37 format=3 uid="uid://cr88suev44554"]
+[gd_scene load_steps=38 format=3 uid="uid://cr88suev44554"]
 
 [ext_resource type="PackedScene" uid="uid://vn2erbrxcr04" path="res://char.tscn" id="1_qtnqo"]
+[ext_resource type="Script" uid="uid://c81mofjrvidlw" path="res://stat_transition.gd" id="1_y3uln"]
 [ext_resource type="Texture2D" uid="uid://beh3i5fdpi3dn" path="res://assets/bgs/bg12.png" id="3_anjje"]
 [ext_resource type="Script" uid="uid://cgqk43miwpiwp" path="res://camtar.gd" id="3_i76yi"]
 [ext_resource type="Texture2D" uid="uid://dqwrf244403r8" path="res://assets/hand.png" id="4_i76yi"]
@@ -237,6 +238,7 @@ _data = {
 size = Vector2(67.33374, 166.00002)
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_y3uln")
 
 [node name="camtar" type="Node2D" parent="."]
 position = Vector2(352, 203)
@@ -427,6 +429,7 @@ offset_top = -19.0
 offset_right = 4993.0
 offset_bottom = 274.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_plua7")
+metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="wls"]
 position = Vector2(-3681, 506)

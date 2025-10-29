@@ -15,8 +15,12 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.get_parent().name == "targets":
 		body.del(0.1)
 		$"..".score += 1
-		velocity *= 0.7
-		$"..".get_child(8).add()
+		$"../score".text = str($"..".score)
+		if $"..".score > $"..".max_score:
+			$"..".max_score = $"..".score
+			$"../max_score".text = str($"..".max_score)
+		velocity *= 0.6
+		$"..".get_child(9).add()
 	elif body is CharacterBody2D and not nmy_fl and body.name != 'plr':
 		body.dmgd(dmg,position)
 	elif body is CharacterBody2D and nmy_fl and body.name == 'plr':

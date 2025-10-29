@@ -2,12 +2,19 @@ extends Node2D
 
 var ar = preload("res://arrow.tscn")
 @export var score = 0
+@export var max_score = 0
 var tar = preload("res://target.tscn")
 var trt
 var fr = 0
 
+func _ready() -> void:
+	$max_score.text = str(max_score)
+	$score.text = "0"
+
+
 func loose():
 	score = 0
+	$score.text = "0"
 	for c in $"targets".get_children():
 		c.del(0.1)
 

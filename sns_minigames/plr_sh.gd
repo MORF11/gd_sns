@@ -3,7 +3,8 @@ extends Node2D
 var main = preload("res://main.tscn")
 var ap = preload("res://apple.tscn")
 var c = 0
-@export var hits = 0
+@export var score = 0
+@export var max_score = 0
 var ins
 var points = []
 var spray
@@ -21,6 +22,8 @@ func spawn(pos):
 
 
 func _ready() -> void:
+	$max_score.text = str(max_score)
+	$score.text = "0"
 	q = 3.1415/180
 	for i in range(88):
 		$"../rot".rotate(0.5)
@@ -29,9 +32,9 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	c += 1
-	if hits < 100:
+	if score < 100:
 		cond =  c % 40 != 0
-	elif hits < 200:
+	elif score < 200:
 		cond = c % 30 != 0
 	else:
 		cond = c % 20 != 0
@@ -59,5 +62,6 @@ func _process(_delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
-		hits = 0
+		score = 0
+		$score.text = "0"
 		body.queue_free()
