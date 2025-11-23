@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8e6cd6jp72gl"]
+
+[ext_resource type="Script" uid="uid://dcsst3irwsdxc" path="res://scripts/target.gd" id="1_e1yvt"]
+[ext_resource type="Texture2D" uid="uid://dahndn2cxeeo5" path="res://assets/target.png" id="2_e1yvt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1yvt"]
+size = Vector2(127.833, 128)
+
+[node name="Node2D" type="StaticBody2D"]
+script = ExtResource("1_e1yvt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.0624995, 0)
+scale = Vector2(0.75, 0.75)
+shape = SubResource("RectangleShape2D_e1yvt")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Target" type="Sprite2D" parent="."]
+texture = ExtResource("2_e1yvt")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

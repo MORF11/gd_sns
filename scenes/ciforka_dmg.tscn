@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://benuipxbbg0jr"]
+
+[ext_resource type="Script" uid="uid://440r4or3nj2" path="res://scripts/ciforka_dmg.gd" id="1_rmrfs"]
+
+[node name="Node2D" type="RigidBody2D"]
+script = ExtResource("1_rmrfs")
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(0.40847915, 0.05185733, 0.062194195, 1)
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

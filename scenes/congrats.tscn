@@ -1,0 +1,108 @@
+[gd_scene load_steps=11 format=3 uid="uid://dypepq73omci4"]
+
+[ext_resource type="Texture2D" uid="uid://d3vkk8ca7140p" path="res://assets/head.png" id="1_0tx4p"]
+[ext_resource type="Texture2D" uid="uid://b7fhjxu4o7ixa" path="res://assets/body.png" id="2_n1boi"]
+[ext_resource type="Texture2D" uid="uid://dqwrf244403r8" path="res://assets/hand.png" id="3_5u0pt"]
+[ext_resource type="Texture2D" uid="uid://c0n8tfyb5rt70" path="res://assets/foot.png" id="4_j4prs"]
+[ext_resource type="Texture2D" uid="uid://5owxbrosnohh" path="res://assets/sword.png" id="5_ky00d"]
+[ext_resource type="Texture2D" uid="uid://dfqfxu3j8fkp0" path="res://assets/shield.png" id="6_u4r4b"]
+[ext_resource type="Texture2D" uid="uid://bf58feyuusp70" path="res://assets/bubble.png" id="7_n1boi"]
+
+[sub_resource type="Curve" id="Curve_5u0pt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.79775286), 0.271268, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_b36ka"]
+width = 100
+curve = SubResource("Curve_5u0pt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j4prs"]
+lifetime_randomness = 0.4
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 12.486
+initial_velocity_min = 852.94
+initial_velocity_max = 1000.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 85.24999
+linear_accel_max = 99.99999
+scale_min = 3.0
+scale_max = 3.0
+color = Color(0.301961, 1, 0.933333, 1)
+alpha_curve = SubResource("CurveTexture_b36ka")
+emission_curve = SubResource("CurveTexture_b36ka")
+hue_variation_min = -1.0
+hue_variation_max = 0.99999994
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Head" type="Sprite2D" parent="."]
+position = Vector2(909, 581.55756)
+texture = ExtResource("1_0tx4p")
+
+[node name="Body" type="Sprite2D" parent="."]
+position = Vector2(899, 684.70966)
+rotation = -0.29972863
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_n1boi")
+
+[node name="Arm2" type="Sprite2D" parent="."]
+position = Vector2(995, 604.95966)
+texture = ExtResource("3_5u0pt")
+
+[node name="Arm" type="Sprite2D" parent="."]
+position = Vector2(790, 581.95966)
+texture = ExtResource("3_5u0pt")
+
+[node name="Leg" type="Sprite2D" parent="."]
+position = Vector2(832, 789.95966)
+texture = ExtResource("4_j4prs")
+
+[node name="Leg2" type="Sprite2D" parent="."]
+position = Vector2(953, 791.95966)
+scale = Vector2(1.01, 1)
+texture = ExtResource("4_j4prs")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 1805.0
+offset_bottom = 377.0
+theme_override_font_sizes/font_size = 136
+text = "спасибо за игру!
+ждите обновлений"
+horizontal_alignment = 1
+
+[node name="Sword" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(1012, 508.5576)
+rotation = -0.5895164
+scale = Vector2(2, 2)
+texture = ExtResource("5_ky00d")
+
+[node name="Shield" type="Sprite2D" parent="."]
+position = Vector2(772, 569.00006)
+rotation = 0.20071286
+scale = Vector2(0.62139845, 1.1109375)
+skew = 0.14835298
+texture = ExtResource("6_u4r4b")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+texture_filter = 1
+position = Vector2(466, 787.9999)
+rotation = -0.43633232
+scale = Vector2(0.5, 0.278)
+amount = 20
+texture = ExtResource("7_n1boi")
+lifetime = 1.75
+process_material = SubResource("ParticleProcessMaterial_j4prs")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+texture_filter = 1
+position = Vector2(1434, 788)
+rotation = 0.43633232
+scale = Vector2(0.5, 0.278)
+amount = 20
+texture = ExtResource("7_n1boi")
+lifetime = 1.75
+process_material = SubResource("ParticleProcessMaterial_j4prs")
