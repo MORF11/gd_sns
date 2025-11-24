@@ -15,39 +15,63 @@ func _ready() -> void:
 	if !WebBus.is_init:
 		await WebBus.inited
 	WebBus.ready()
-	# if error use: if await WebBus.get_stats() is not int ((or is null)): WebBus.set_stats({qwe:0})
-	max_ml = await WebBus.get_stats('ml')
-	max_ult = await WebBus.get_stats('mg')
-	max_rn = await WebBus.get_stats('rn')
-	max_hp = await WebBus.get_stats('sh')
+	#while !WebBus.is_init:
+		#if WebBus.is_init:
+			#await get_tree().create_timer(0.5).timeout
+			#WebBus.ready()
+	# if error use: if await WebBus.get_stats() is not int ((or is null)): WebBus.set_stats({qwe:0}); sdelal?
+	if await WebBus.get_stats('sh') == {}:
+		max_hp = 0
+	else:
+		max_hp = (await WebBus.get_stats('sh'))['sh']
+	if await WebBus.get_stats('rn') == {}:
+		max_rn = 0
+	else:
+		max_rn = (await WebBus.get_stats('rn'))['rn']
+	if await WebBus.get_stats('mg') == {}:
+		max_ult = 0
+	else:
+		max_ult = (await WebBus.get_stats('mg'))['mg']
+	if await WebBus.get_stats('ml') == {}:
+		max_ml = 0
+	else:
+		max_ml = (await WebBus.get_stats('ml'))['ml']
+	if await WebBus.get_stats('lv') == {}:
+		level = 0
+	else:
+		level = (await WebBus.get_stats('lv'))['lv']
+	
 	WebBus.ad_closed.connect(ad_closed)
 	WebBus.ad_error.connect(ad_error)
 	WebBus.ad_started.connect(ad_started)
 	WebBus.reward_added.connect(reward_added)
-	WebBus.show_banner()
-	await get_tree().create_timer(5).timeout
-	WebBus.close_banner()
-	WebBus.start_gameplay()
+	#WebBus.show_banner()
+	#await get_tree().create_timer(5).timeout
+	#WebBus.close_banner()
+	WebBus.show_ad()
+	#WebBus.start_gameplay()
 
 
 func ad_started():
 	AudioServer.set_bus_mute(0, true)
-	WebBus.stop_gameplay()
+	#WebBus.stop_gameplay()
 
 
 func ad_closed():
 	AudioServer.set_bus_mute(0, false)
-	WebBus.start_gameplay()
+	#WebBus.start_gameplay()
 
 
 func ad_error():
-	push_warning("ad_error")
-	WebBus.start_gameplay()
+	#push_warning("oshibka s reklamoi")
+	#WebBus.start_gameplay()
+	pass
 
 
 func reward_added():
 	#$Player.add_gold(10)
-	WebBus.start_gameplay()
+	#WebBus.start_gameplay()
+	pass
 
 
 func _notification(what: int) -> void:

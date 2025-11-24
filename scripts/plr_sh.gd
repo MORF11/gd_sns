@@ -63,4 +63,5 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_quit_button_down() -> void:
 	glb.max_hp = max(max_score,glb.max_hp)
 	glb.save_dt('sh',glb.max_hp)
+	glb.save_dt('lv',glb.level)
 	glb.qw()

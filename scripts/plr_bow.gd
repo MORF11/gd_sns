@@ -36,4 +36,5 @@ func loose():
 func _on_quit_button_down() -> void:
 	glb.max_rn = max(max_score,glb.max_rn)
 	glb.save_dt('rn',glb.max_rn)
+	glb.save_dt('lv',glb.level)
 	glb.qw()

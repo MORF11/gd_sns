@@ -77,4 +77,5 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 func _on_quit_button_down() -> void:
 	glb.max_ml = max(max_score,glb.max_ml)
 	glb.save_dt('ml',glb.max_ml)
+	glb.save_dt('lv',glb.level)
 	glb.qw()

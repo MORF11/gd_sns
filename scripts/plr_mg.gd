@@ -45,4 +45,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_quit_button_down() -> void:
 	glb.max_ult = max(max_score,glb.max_ult)
 	glb.save_dt('mg',glb.max_ult)
+	glb.save_dt('lv',glb.level)
 	glb.qw()
