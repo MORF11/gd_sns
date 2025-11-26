@@ -12,66 +12,34 @@ var is_ad = false
 @export var is_arr = false
 
 func _ready() -> void:
-	if !WebBus.is_init:
-		await WebBus.inited
-	WebBus.ready()
-	#while !WebBus.is_init:
-		#if WebBus.is_init:
-			#await get_tree().create_timer(0.5).timeout
-			#WebBus.ready()
-	# if error use: if await WebBus.get_stats() is not int ((or is null)): WebBus.set_stats({qwe:0}); sdelal?
-	if await WebBus.get_stats('sh') == {}:
-		max_hp = 0
-	else:
-		max_hp = (await WebBus.get_stats('sh'))['sh']
-	if await WebBus.get_stats('rn') == {}:
-		max_rn = 0
-	else:
-		max_rn = (await WebBus.get_stats('rn'))['rn']
-	if await WebBus.get_stats('mg') == {}:
-		max_ult = 0
-	else:
-		max_ult = (await WebBus.get_stats('mg'))['mg']
-	if await WebBus.get_stats('ml') == {}:
-		max_ml = 0
-	else:
-		max_ml = (await WebBus.get_stats('ml'))['ml']
-	if await WebBus.get_stats('lv') == {}:
-		level = 0
-	else:
-		level = (await WebBus.get_stats('lv'))['lv']
-	
-	WebBus.ad_closed.connect(ad_closed)
-	WebBus.ad_error.connect(ad_error)
-	WebBus.ad_started.connect(ad_started)
-	WebBus.reward_added.connect(reward_added)
-	#WebBus.show_banner()
-	#await get_tree().create_timer(5).timeout
-	#WebBus.close_banner()
-	WebBus.show_ad()
-	#WebBus.start_gameplay()
+	YandexSDK.game_ready()
+	YandexSDK.connect("stats_loaded",ld)
+	YandexSDK.connect("rewarded_ad",rewd)
+	YandexSDK.connect("interstitial_ad",inter)
 
 
-func ad_started():
-	AudioServer.set_bus_mute(0, true)
-	#WebBus.stop_gameplay()
-
-
-func ad_closed():
-	AudioServer.set_bus_mute(0, false)
-	#WebBus.start_gameplay()
-
-
-func ad_error():
-	#push_warning("oshibka s reklamoi")
-	#WebBus.start_gameplay()
+func ld(_k):
 	pass
 
 
-func reward_added():
-	#$Player.add_gold(10)
-	#WebBus.start_gameplay()
-	pass
+func rewd(res):
+	if res == 'opened':
+		AudioServer.set_bus_mute(0,true)
+		is_ad = true
+	elif res in ['closed','error']:
+		AudioServer.set_bus_mute(0,false)
+		is_ad = false
+	elif res == 'rewarded':
+		is_ad = false
+
+
+func inter(res):
+	if res == 'opened':
+		AudioServer.set_bus_mute(0,true)
+		is_ad = true
+	elif res in ['closed','error']:
+		AudioServer.set_bus_mute(0,false)
+		is_ad = false
 
 
 func _notification(what: int) -> void:
@@ -104,24 +72,15 @@ func ch_sc(q:String):
 			curr_sc = 'mg'
 		"res://scenes/bow.tscn":
 			curr_sc = 'rn'
-	if q == "res://scenes/congrats.tscn":
-		await get_tree().create_timer(5).timeout
-		qw()
-		if await WebBus.can_rewiew():
-			await WebBus.request_review()
-		else:
-			await WebBus.open_auth_dialog()
-			await WebBus.request_review()
+	#if q == "res://scenes/congrats.tscn":
+		#await get_tree().create_timer(5).timeout
+		#qw()
+		#if await WebBus.can_rewiew():
+			#await WebBus.request_review()
+		#else:
+			#await WebBus.open_auth_dialog()
+			#await WebBus.request_review()
 
 
-func save_dt(key:String,dt:int):
-	#match curr_sc:
-		#'rn':
-			#max_rn = dt
-		#'mg':
-			#max_ult = dt
-		#'sw':
-			#max_ml = dt
-		#'sh':
-			#max_hp = dt
-	WebBus.set_data({key:dt})
+func save_dt(_key:String,_dt:int):
+	pass

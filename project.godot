@@ -18,7 +18,7 @@ config/icon="uid://bgnhytjymh6k0"
 [autoload]
 
 glb="*res://scripts/glb.gd"
-WebBus="*res://addons/webbus/webbus.gd"
+YandexSDK="*res://addons/godot-yandex-games-sdk/yandex_sdk.gd"
 
 [display]
 
@@ -33,7 +33,7 @@ movie_writer/movie_file="C:/Users/Иван/Documents/Godot/sns_minigames/clip.mp
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/webbus/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot-yandex-games-sdk/plugin.cfg")
 
 [input]
 
